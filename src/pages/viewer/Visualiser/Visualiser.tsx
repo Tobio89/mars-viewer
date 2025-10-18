@@ -1,4 +1,5 @@
 import { Ref } from "react";
+import OpenSeadragon from "openseadragon";
 import OSDViewer, {
   OSDViewerRef,
   readXMLMetadata,
@@ -11,10 +12,7 @@ import { commonConfig, viewerOptions } from "../../../const";
 import { visualizationConfig } from "../../../visualizationConfig";
 
 import type { VisualizerProps } from "./Visualizer.types";
-import OpenSeadragon from "openseadragon";
 import { OrthographicView } from "@deck.gl/core";
-
-import process from "process";
 
 const marsD4Metadata = readXMLMetadata(
   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="6" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="16384" Height="8192" /></Image>`
