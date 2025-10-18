@@ -196,28 +196,6 @@
     gl-matrix "^3.0.0"
     mjolnir.js "^2.7.0"
 
-"@deck.gl/core@9.0.38":
-  version "9.0.38"
-  resolved "https://registry.yarnpkg.com/@deck.gl/core/-/core-9.0.38.tgz#d47184c827540e6cf448f425abd6077b21be712b"
-  integrity sha512-+VorbO4S7AQZgSESDpNe//iw34B0F5tQcZM5mnk0OFibh+Uej/upErG4L/jPx+lujsL2fgxL2nujx9E5zEsuNA==
-  dependencies:
-    "@loaders.gl/core" "^4.2.0"
-    "@loaders.gl/images" "^4.2.0"
-    "@luma.gl/constants" "~9.0.27"
-    "@luma.gl/core" "~9.0.27"
-    "@luma.gl/engine" "~9.0.27"
-    "@luma.gl/shadertools" "~9.0.27"
-    "@luma.gl/webgl" "~9.0.27"
-    "@math.gl/core" "^4.0.0"
-    "@math.gl/sun" "^4.0.0"
-    "@math.gl/web-mercator" "^4.0.0"
-    "@probe.gl/env" "^4.0.9"
-    "@probe.gl/log" "^4.0.9"
-    "@probe.gl/stats" "^4.0.9"
-    "@types/offscreencanvas" "^2019.6.4"
-    gl-matrix "^3.0.0"
-    mjolnir.js "^2.7.0"
-
 "@deck.gl/extensions@9.0.34":
   version "9.0.34"
   resolved "https://registry.yarnpkg.com/@deck.gl/extensions/-/extensions-9.0.34.tgz#8d3c5b186105db11514300b8c7fa5e7e19ff49fd"
@@ -896,10 +874,10 @@
 
 "@lunit/osd-react-renderer@./lunit-osd-react-renderer-v2.1.0.tgz":
   version "2.1.0"
-  resolved "./lunit-osd-react-renderer-v2.1.0.tgz#f263cb0cc536c99681c6edc7d5f4f9fafff651a6"
+  resolved "./lunit-osd-react-renderer-v2.1.0.tgz#bfa3c5153d3ab2d72fb44ce600514f0b3a86aaf2"
   dependencies:
     "@danmarshall/deckgl-typings" "^4.9.28"
-    "@deck.gl/core" "9.0.38"
+    "@deck.gl/core" "9.0.34"
     colormap "^2.3.2"
     lodash "^4.17.21"
     openseadragon "^5.0.0"
