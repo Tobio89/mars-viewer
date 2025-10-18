@@ -1,9 +1,12 @@
 import { Typography } from "@mui/material";
 import { useTooltipState } from "../../store/store";
-import { DetailTooltipContainer } from "./DetailTooltip.styled";
+import {
+  DetailTooltipContainer,
+  TooltipTriangle,
+} from "./DetailTooltip.styled";
 
 const width = 200;
-const tooltipXOffset = 10;
+const tooltipXOffset = 0;
 
 const DetailTooltip = () => {
   const { tooltipData } = useTooltipState();
@@ -13,7 +16,7 @@ const DetailTooltip = () => {
   }
 
   const left = tooltipXOffset + tooltipData.point.x + width / 2;
-  const top = tooltipData.point.y + 70;
+  const top = tooltipData.point.y + 75;
 
   return (
     <DetailTooltipContainer
@@ -22,6 +25,12 @@ const DetailTooltip = () => {
         left,
       }}
     >
+      <TooltipTriangle
+        sx={{
+          top: top - 10,
+          left: left + width - 30,
+        }}
+      />
       <Typography
         variant="h5"
         sx={{

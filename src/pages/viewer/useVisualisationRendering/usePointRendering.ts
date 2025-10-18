@@ -2,12 +2,13 @@ import { useCallback } from "react";
 
 import { ScatterplotLayer } from "@deck.gl/layers";
 
-import { DeckLayer } from "./useDeckGL.types";
-
-import marsLocaleData from "../../../marsLocaleData.json";
 import { useTooltipState, useVisualizationStore } from "src/store/store";
 import { visualizationConfig } from "src/visualizationConfig";
-import { RGBAColor } from "@deck.gl/core";
+
+import type { DeckLayer } from "./useDeckGL.types";
+import type { RGBAColor } from "@deck.gl/core";
+
+import marsLocaleData from "../../../marsLocaleData.json";
 interface PointData {
   name: string;
   point: { x: number; y: number };
@@ -25,14 +26,14 @@ const usePointRendering = () => {
     missionSites: PointData[];
   };
   const { pointLayers } = visualizationConfig;
-  const { drawMountains, drawMissionSites } = useVisualizationStore();
+  const { drawMountains, drawMissionSites, master } = useVisualizationStore();
   const { updateTooltipData } = useTooltipState();
 
   const createPointLayers = useCallback(
     // (viewer: OpenSeadragon.Viewer): DeckLayer[] => {
     (): DeckLayer[] => {
       const result: DeckLayer[] = [];
-
+      if (!master) return result;
       if (drawMountains) {
         result.push(
           new ScatterplotLayer<PointData>({
@@ -100,6 +101,7 @@ const usePointRendering = () => {
     [
       drawMissionSites,
       drawMountains,
+      master,
       missionSites,
       mountains,
       pointLayers,

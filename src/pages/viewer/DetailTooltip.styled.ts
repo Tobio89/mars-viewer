@@ -15,3 +15,14 @@ export const DetailTooltipContainer = styled(Box)(({ theme }) => {
     gap: "6px",
   };
 });
+
+export const TooltipTriangle = styled(Box)(({ theme }) => {
+  return {
+    position: "fixed",
+    width: "0",
+    height: "0",
+    borderLeft: "10px solid transparent",
+    borderRight: "10px solid transparent",
+    borderBottom: `10px solid ${theme.palette.background.paper}`,
+  };
+});
