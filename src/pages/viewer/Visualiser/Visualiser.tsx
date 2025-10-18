@@ -14,6 +14,8 @@ import type { VisualizerProps } from "./Visualizer.types";
 import OpenSeadragon from "openseadragon";
 import { OrthographicView } from "@deck.gl/core";
 
+import process from "process";
+
 const marsD4Metadata = readXMLMetadata(
   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="6" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="16384" Height="8192" /></Image>`
 );
@@ -66,13 +68,13 @@ const Visualiser = ({
           />
           <tiledImage
             index={0}
-            tileUrlBase="http://localhost:4444/tiles/base"
+            tileUrlBase={`${import.meta.env.VITE_API_URL}/tiles/base`}
             tileMetadata={marsD4Metadata}
           />
           <bitmaskLayer
             index={1}
             isVisible={masterOn}
-            tileUrlBase="http://localhost:4444/tiles/annotated"
+            tileUrlBase={`${import.meta.env.VITE_API_URL}/tiles/annotated`}
             tileMetadata={marsD4Metadata}
             options={options}
           />
