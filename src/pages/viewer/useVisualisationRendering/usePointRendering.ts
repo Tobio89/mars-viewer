@@ -7,13 +7,14 @@ import { DeckLayer } from "./useDeckGL.types";
 import marsLocaleData from "../../../marsLocaleData.json";
 import { useTooltipState, useVisualizationStore } from "src/store/store";
 import { visualizationConfig } from "src/visualizationConfig";
+import { RGBAColor } from "@deck.gl/core";
 interface PointData {
   name: string;
   point: { x: number; y: number };
   description?: string;
 }
 
-function hexToRGB(hex: string) {
+function hexToRGB(hex: string): RGBAColor {
   const [r, g, b] = hex.match(/\w\w/g)!.map((c) => parseInt(c, 16));
   return [r, g, b];
 }
@@ -36,7 +37,6 @@ const usePointRendering = () => {
         result.push(
           new ScatterplotLayer<PointData>({
             id: `point-mountains`,
-            // @ts-expect-error - This is correct according to the docs but it doesn't work anyway
             data: mountains,
             getPosition: (d: PointData) =>
               [d.point.x, d.point.y] as [number, number],
@@ -68,7 +68,6 @@ const usePointRendering = () => {
         result.push(
           new ScatterplotLayer<PointData>({
             id: `point-mission-sites`,
-            // @ts-expect-error - This is correct according to the docs but it doesn't work anyway
             data: missionSites,
             getPosition: (d: PointData) =>
               [d.point.x, d.point.y] as [number, number],
