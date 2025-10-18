@@ -37,7 +37,7 @@ function HeaderBar() {
         </HeaderSection>
       </PageLink>
       <HeaderSection>
-        <PageLink to="/viewer" title="Viewer" />
+        <PageLink to="/" title="Viewer" />
         <PageLink to="/about" title="About" />
       </HeaderSection>
     </HeaderBarContainer>
