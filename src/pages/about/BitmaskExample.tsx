@@ -1,4 +1,4 @@
-import { Box, styled, Typography, useTheme } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import { ArrowRightAlt } from "@mui/icons-material";
 import ToggleSwitch from "src/components/ToggleSwitch/ToggleSwitch";
 import { useState } from "react";
@@ -81,7 +81,6 @@ export function BitmaskExplanation() {
 
 export function BitmaskInteractive() {
   const [switchState, setSwitchState] = useState([true, false, false, false]);
-  const theme = useTheme();
 
   const onToggle = (index: number, value: boolean) => {
     const newState = [...switchState];
@@ -112,9 +111,9 @@ export function BitmaskInteractive() {
           flexDirection: "column",
           gap: "2px",
           width: "240px",
-          background: theme.palette.background.paper,
+          background: "#252525",
           padding: "6px 12px",
-          borderRadius: "2px",
+          borderRadius: "4px",
         }}
       >
         {layerLabels.map((label, index) => {
