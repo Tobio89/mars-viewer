@@ -1451,6 +1451,50 @@
     "@typescript-eslint/types" "8.46.1"
     eslint-visitor-keys "^4.2.1"
 
+"@uiw/color-convert@2.9.0", "@uiw/color-convert@^2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@uiw/color-convert/-/color-convert-2.9.0.tgz#35f16477fc4e7239838d6b6bf25cf0756526d049"
+  integrity sha512-tFm6iac8iN3VL9IIAXKAVpBX6ZQH7ucCvb+EgZNM5y8prRWlk53cERnP4RycE3wnYb/HUKW0lrngoygQnEWAHg==
+
+"@uiw/react-color-alpha@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-alpha/-/react-color-alpha-2.9.0.tgz#49bdf22095056c7171cad5279ec5a61588fdc1e9"
+  integrity sha512-tP9zs2KUPzIGvdtTBTNlDEdwHWcNJ3Ju/nnpPTsKERRJF2vzucb3v18JzihX0ACiOXU9+JVqgpAVgvoZXMeITA==
+  dependencies:
+    "@uiw/color-convert" "2.9.0"
+    "@uiw/react-drag-event-interactive" "2.9.0"
+
+"@uiw/react-color-colorful@^2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-colorful/-/react-color-colorful-2.9.0.tgz#1e22c229ec8cfc8c835c6a380c9127cbfe5a22d2"
+  integrity sha512-qw7zhgX9J4aydK0hKKLroXMYp0tw3ASNuZM1fQNwXXIpOkEW4zO+PHTkzUBpbII68wGS8tAxsZessTWNpAVi0w==
+  dependencies:
+    "@uiw/color-convert" "2.9.0"
+    "@uiw/react-color-alpha" "2.9.0"
+    "@uiw/react-color-hue" "2.9.0"
+    "@uiw/react-color-saturation" "2.9.0"
+
+"@uiw/react-color-hue@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-hue/-/react-color-hue-2.9.0.tgz#3f96d1f22c26e519add146a56c83d05296588b9c"
+  integrity sha512-2Ix027ref3ppiVq+OQkbyKr6O8fLTH+n0wEW4xhHfa3kV8mBa2bEu8jAjrkSwO6uElaE6OJcuqYe2llyKRlIFg==
+  dependencies:
+    "@uiw/color-convert" "2.9.0"
+    "@uiw/react-color-alpha" "2.9.0"
+
+"@uiw/react-color-saturation@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-saturation/-/react-color-saturation-2.9.0.tgz#b372737ccffbde7a65b8cfcada52f33b88b0b87d"
+  integrity sha512-tBARqsW0ap+gwByGKSid1nYaGJd6dw2MTMwCABF9rebPQHtYbN/YgBjl9dNnp6XDGd+VBhH4RbpM38WV7J1F4g==
+  dependencies:
+    "@uiw/color-convert" "2.9.0"
+    "@uiw/react-drag-event-interactive" "2.9.0"
+
+"@uiw/react-drag-event-interactive@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@uiw/react-drag-event-interactive/-/react-drag-event-interactive-2.9.0.tgz#55f863f88576aab99b989f34043295d6c1f3f6ab"
+  integrity sha512-oBqrClsSuYA3IjkSHp4uHOBLgPkR98KeKeheqCRltF8w/a1CPaFCl43pyKyxwXaTV6qM6cb3VkT3JRCHMNqTzA==
+
 "@vitejs/plugin-react@^5.0.2":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-5.0.4.tgz#d642058e89c5b712655c8cbd13482f5813519602"

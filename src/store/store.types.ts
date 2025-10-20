@@ -26,3 +26,8 @@ export interface TooltipState {
     } | null
   ) => void;
 }
+
+export interface AboutColorState {
+  color: { h: number; s: number; v: number; a: number };
+  updateColor: (color: { h: number; s: number; v: number; a: number }) => void;
+}
