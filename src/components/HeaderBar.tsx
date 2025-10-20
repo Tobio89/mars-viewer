@@ -32,7 +32,7 @@ function HeaderBar() {
             style={{ width: "30px", height: "30px" }}
           />
           <Typography variant="h5" sx={{ color: app_colours.marsOrange }}>
-            Mars Visualiser
+            Mars Viewer
           </Typography>
         </HeaderSection>
       </PageLink>

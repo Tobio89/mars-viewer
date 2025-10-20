@@ -14,6 +14,23 @@ export const PageContainer = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+export const PageSection = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Box
+      component="section"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        padding: "20px 200px",
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
 export const VisualisationTitle = ({
   children,
 }: {
