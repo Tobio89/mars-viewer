@@ -1,4 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Typography,
+} from "@mui/material";
 
 export const PageContainer = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -32,6 +38,25 @@ export const PageSection = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
     </Box>
+  );
+};
+
+export const AccordionSection = ({
+  summary,
+  children,
+}: {
+  summary: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <PageSection>
+      <Accordion>
+        <AccordionSummary>
+          <Typography variant="h5">{summary}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>{children}</AccordionDetails>
+      </Accordion>
+    </PageSection>
   );
 };
 
