@@ -1,6 +1,11 @@
 import { create } from "zustand";
 
-import type { VizState, MouseCoordsState, TooltipState } from "./store.types";
+import type {
+  VizState,
+  MouseCoordsState,
+  TooltipState,
+  AboutColorState,
+} from "./store.types";
 
 const useVisualizationStore = create<VizState>((set) => ({
   master: true,
@@ -41,4 +46,15 @@ const useTooltipState = create<TooltipState>((set) => ({
     }),
 }));
 
-export { useVisualizationStore, useMouseCoords, useTooltipState };
+const useAboutColorState = create<AboutColorState>((set) => ({
+  color: { h: 31, s: 93, v: 90, a: 1 },
+  updateColor: (color: { h: number; s: number; v: number; a: number }) =>
+    set({ color }),
+}));
+
+export {
+  useVisualizationStore,
+  useMouseCoords,
+  useTooltipState,
+  useAboutColorState,
+};
