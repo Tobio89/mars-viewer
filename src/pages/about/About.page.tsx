@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { PageContainer, PageSection } from "../../components/common";
+import { BitmaskExplanation, BitmaskInteractive } from "./BitmaskExample";
 
 function AboutPage() {
   return (
@@ -54,6 +55,9 @@ function AboutPage() {
           This app utilises a tooltip overlay, a DeckGL overlay, and a prototype
           bit-masked tiled image overlay, to render the data.
         </Typography>
+      </PageSection>
+
+      <PageSection>
         <Typography variant="h6">
           What is the Bit-Masked Rendering Technique?
         </Typography>
@@ -66,6 +70,7 @@ function AboutPage() {
           logo text. An 8-bit number just means the computer gives us eight 0s
           or 1s that represent a number, such as 11100110.
         </Typography>
+        <BitmaskExplanation />
         <Typography variant="body1">
           Bit masking refers to a technique that lets us select individual
           values from a binary number. What if, instead of reading 11100110 as
@@ -77,6 +82,7 @@ function AboutPage() {
           in four channels, means a pixel can belong to any combination of up to
           64 layers of data!
         </Typography>
+        <BitmaskInteractive />
         <Typography variant="body1">
           The workflow I created allows the user to toggle on or off any of
           these layers. If the pixel has a 1 in a given position, and its toggle
@@ -91,11 +97,13 @@ function AboutPage() {
       </PageSection>
       <PageSection>
         <Typography variant="h5">About Mars</Typography>
-        <Typography variant="body1">yes</Typography>
+        <Typography variant="body1">
+          Let's be honest, it's a bit of a fixer-upper, innit?
+        </Typography>
       </PageSection>
       <PageSection>
         <Typography variant="h5">About the Developer</Typography>
-        <Typography variant="body1">yes</Typography>
+        <Typography variant="body1">Wizard</Typography>
       </PageSection>
     </PageContainer>
   );
