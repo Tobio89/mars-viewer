@@ -7,6 +7,8 @@ export const PageContainer = ({ children }: { children: React.ReactNode }) => {
       sx={{
         flexGrow: 1,
         padding: "0 20px",
+        overflowX: "hidden",
+        overflowY: "auto",
       }}
     >
       {children}
@@ -24,6 +26,8 @@ export const PageSection = ({ children }: { children: React.ReactNode }) => {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         padding: "20px 200px",
+        gap: "10px",
+        textAlign: "left",
       }}
     >
       {children}
