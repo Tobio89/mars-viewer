@@ -38,6 +38,7 @@ const usePointRendering = () => {
         result.push(
           new ScatterplotLayer<PointData>({
             id: `point-mountains`,
+            //@ts-expect-error - it should be configured correctly, but it doesn't work anyway :S
             data: mountains,
             getPosition: (d: PointData) =>
               [d.point.x, d.point.y] as [number, number],
@@ -69,6 +70,7 @@ const usePointRendering = () => {
         result.push(
           new ScatterplotLayer<PointData>({
             id: `point-mission-sites`,
+            //@ts-expect-error - it should be configured correctly, but it doesn't work anyway :S
             data: missionSites,
             getPosition: (d: PointData) =>
               [d.point.x, d.point.y] as [number, number],
