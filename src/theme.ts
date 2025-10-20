@@ -16,6 +16,15 @@ const marsTheme = createTheme({
       paper: "#32373B",
     },
   },
+  components: {
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          color: "white",
+        },
+      },
+    },
+  },
 });
 
 export default marsTheme;
