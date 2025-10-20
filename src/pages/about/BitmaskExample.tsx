@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, styled, Typography, useTheme } from "@mui/material";
 import { ArrowRightAlt } from "@mui/icons-material";
 import ToggleSwitch from "src/components/ToggleSwitch/ToggleSwitch";
 import { useState } from "react";
@@ -19,24 +19,32 @@ function LayerTag({ isOn, label }: { isOn: boolean; label: string }) {
   );
 }
 
+const Container = styled(Box)({
+  display: "flex",
+  flexDirection: "row",
+  gap: "40px",
+  alignItems: "center",
+  height: "200px",
+  width: "100%",
+  justifyContent: "space-evenly",
+  padding: "140px 80px",
+});
+
 export function BitmaskExplanation() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        gap: "40px",
-        alignItems: "center",
-        height: "200px",
-        width: "100%",
-        justifyContent: "center",
-      }}
-    >
+    <Container>
       <Box
         sx={{ width: "100px", height: "100px", backgroundColor: "#E67E0F" }}
       />
       <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "2px",
+          fontFamily: "monospace",
+        }}
+      >
         <Typography
           variant="body1"
           sx={{
@@ -44,6 +52,7 @@ export function BitmaskExplanation() {
             color: "black",
             borderRadius: "2px",
             padding: "0 4px",
+            boxSizing: "content-box",
           }}
         >
           r: 230
@@ -66,12 +75,13 @@ export function BitmaskExplanation() {
         <LayerTag isOn={true} label="Layer 7" />
         <LayerTag isOn={false} label="Layer 8" />
       </Box>
-    </Box>
+    </Container>
   );
 }
 
 export function BitmaskInteractive() {
   const [switchState, setSwitchState] = useState([true, false, false, false]);
+  const theme = useTheme();
 
   const onToggle = (index: number, value: boolean) => {
     const newState = [...switchState];
@@ -79,7 +89,8 @@ export function BitmaskInteractive() {
     setSwitchState(newState);
   };
 
-  const layerLabels = ["Plains", "Mountains", "Water", "Crevasses"];
+  const layerLabels = ["Plains", "Mountains", "Water", "Canyons"];
+  const layerLegends = ["#ff0000", "#00ff00", "#ff00ff", "#0000ff"];
 
   const boxRed = switchState[0] ? "ff" : "00";
   const boxGreen = switchState[1] ? "ff" : "00";
@@ -87,17 +98,7 @@ export function BitmaskInteractive() {
   const boxColour = `#${boxRed}${boxGreen}${boxBlue}`;
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        gap: "40px",
-        alignItems: "center",
-        height: "200px",
-        width: "100%",
-        justifyContent: "center",
-      }}
-    >
+    <Container>
       <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
         <LayerTag isOn={true} label="Layer 1" />
         <LayerTag isOn={true} label="Layer 2" />
@@ -105,62 +106,21 @@ export function BitmaskInteractive() {
         <LayerTag isOn={true} label="Layer 4" />
       </Box>
       <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-        <Typography
-          variant="body1"
-          sx={{
-            background: "#ff0000",
-            fontFamily: "monospace",
-            padding: "2px",
-          }}
-        >
-          #ff0000
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            background: "#00ff00",
-            fontFamily: "monospace",
-            padding: "2px",
-            color: "black",
-          }}
-        >
-          #00ff00
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            background: "#ff00ff",
-            fontFamily: "monospace",
-            padding: "2px",
-          }}
-        >
-          #ff00ff
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            background: "#0000ff",
-            fontFamily: "monospace",
-            padding: "2px",
-          }}
-        >
-          #0000ff
-        </Typography>
-      </Box>
-      <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           gap: "2px",
           width: "240px",
+          background: theme.palette.background.paper,
+          padding: "6px 12px",
+          borderRadius: "2px",
         }}
       >
         {layerLabels.map((label, index) => {
           return (
             <ToggleSwitch
+              legend={{ color: layerLegends[index], shape: "square" }}
               title={label}
               on={switchState[index]}
               onToggle={() => onToggle(index, !switchState[index])}
@@ -172,6 +132,6 @@ export function BitmaskInteractive() {
       <Box
         sx={{ width: "100px", height: "100px", backgroundColor: boxColour }}
       />
-    </Box>
+    </Container>
   );
 }
