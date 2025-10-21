@@ -249,6 +249,7 @@ export function BitmaskInteractive() {
                 key={label}
                 legend={{ color: layerLegends[index], shape: "square" }}
                 title={`${index + 1}: ${label}`}
+                inactive={!switchState[index]}
                 on={switchState[index]}
                 onToggle={() => onToggle(index, !switchState[index])}
               />
