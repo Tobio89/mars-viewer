@@ -24,7 +24,11 @@ const Visualiser = ({
 }: VisualizerProps) => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
-  const { redChannel, master: masterOn } = useVisualizationStore();
+  const {
+    redChannel,
+    master: masterOn,
+    drawRegionSection,
+  } = useVisualizationStore();
 
   const options = {
     channels: {
@@ -71,7 +75,7 @@ const Visualiser = ({
           />
           <bitmaskLayer
             index={1}
-            isVisible={masterOn}
+            isVisible={masterOn && drawRegionSection}
             tileUrlBase={`${import.meta.env.VITE_API_URL}/tiles/annotated`}
             tileMetadata={marsD4Metadata}
             options={options}

@@ -1,5 +1,7 @@
 import { Box, styled, Switch, Typography } from "@mui/material";
 import type {
+  SectionSwitchProps,
+  TitleSwitchProps,
   ToggleLegendProps,
   ToggleSwitchProps,
 } from "./ToggleSwitch.types";
@@ -68,4 +70,79 @@ const ToggleSwitch = ({ title, on, onToggle, legend }: ToggleSwitchProps) => {
   );
 };
 
-export default ToggleSwitch;
+const TitleSwitch = ({ title, variant, on, onToggle }: TitleSwitchProps) => {
+  return (
+    <Box
+      sx={{
+        flexGrow: 1,
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        borderBottom: "1px solid #e0e0e0",
+      }}
+    >
+      <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
+        <Typography variant={variant ?? "h6"}>{title}</Typography>
+      </Box>
+      <Toggle checked={on} onChange={() => onToggle(on)} />
+    </Box>
+  );
+};
+
+const VisualisationSection = ({
+  title,
+  children,
+  variant,
+  ...rest
+}: SectionSwitchProps) => {
+  const isTogglable = "on" in rest;
+  if (isTogglable) {
+    const { on, onToggle } = rest;
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          justifyContent: "flex-start",
+          borderBottom: "1px solid grey",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "6px",
+          }}
+        >
+          <Typography variant={variant ?? "subtitle1"}>{title}</Typography>
+          <Toggle checked={on} onChange={() => onToggle(on)} />
+        </Box>
+        {children}
+      </Box>
+    );
+  }
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        justifyContent: "flex-start",
+        borderBottom: "1px solid grey",
+      }}
+    >
+      <Typography
+        variant={variant ?? "subtitle1"}
+        sx={{ width: "100%", textAlign: "left", padding: "8px 0 0 0" }}
+      >
+        {title}
+      </Typography>
+      {children}
+    </Box>
+  );
+};
+
+export { ToggleSwitch, TitleSwitch, VisualisationSection };

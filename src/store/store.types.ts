@@ -1,8 +1,14 @@
 export interface VizState {
   master: boolean;
   updateMaster: (value: boolean) => void;
+  drawRegionSection: boolean;
+  updateDrawRegionSection: (value: boolean) => void;
   redChannel: boolean[];
   updateRedChannel: (index: number, value: boolean) => void;
+
+  drawPointSection: boolean;
+  updateDrawPointSection: (value: boolean) => void;
+
   drawMountains: boolean;
   updateDrawMountains: (value: boolean) => void;
   drawMissionSites: boolean;

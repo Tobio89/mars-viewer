@@ -10,6 +10,11 @@ import type {
 const useVisualizationStore = create<VizState>((set) => ({
   master: true,
   updateMaster: (value: boolean) => set({ master: value }),
+
+  drawRegionSection: true,
+  updateDrawRegionSection: (value: boolean) =>
+    set({ drawRegionSection: value }),
+
   redChannel: [true, true, true, true, true, true],
   updateRedChannel: (index: number, value: boolean) =>
     set((state) => {
@@ -17,8 +22,13 @@ const useVisualizationStore = create<VizState>((set) => ({
       newState[index] = value;
       return { redChannel: newState, master: value ? true : state.master };
     }),
+
+  drawPointSection: true,
+  updateDrawPointSection: (value: boolean) => set({ drawPointSection: value }),
+
   drawMountains: true,
   updateDrawMountains: (value: boolean) => set({ drawMountains: value }),
+
   drawMissionSites: true,
   updateDrawMissionSites: (value: boolean) => set({ drawMissionSites: value }),
 }));
