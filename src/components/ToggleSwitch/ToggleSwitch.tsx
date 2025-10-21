@@ -53,7 +53,13 @@ const ToggleLabel = ({
   );
 };
 
-const ToggleSwitch = ({ title, on, onToggle, legend }: ToggleSwitchProps) => {
+const ToggleSwitch = ({
+  title,
+  on,
+  inactive,
+  onToggle,
+  legend,
+}: ToggleSwitchProps) => {
   return (
     <Box
       sx={{
@@ -62,6 +68,7 @@ const ToggleSwitch = ({ title, on, onToggle, legend }: ToggleSwitchProps) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        opacity: inactive ? "0.6" : "1",
       }}
     >
       <ToggleLabel title={title} legend={legend} />
@@ -70,7 +77,13 @@ const ToggleSwitch = ({ title, on, onToggle, legend }: ToggleSwitchProps) => {
   );
 };
 
-const TitleSwitch = ({ title, variant, on, onToggle }: TitleSwitchProps) => {
+const TitleSwitch = ({
+  title,
+  variant,
+  on,
+  inactive,
+  onToggle,
+}: TitleSwitchProps) => {
   return (
     <Box
       sx={{
@@ -80,6 +93,7 @@ const TitleSwitch = ({ title, variant, on, onToggle }: TitleSwitchProps) => {
         alignItems: "center",
         justifyContent: "space-between",
         borderBottom: "1px solid #e0e0e0",
+        opacity: inactive ? "0.6" : "1",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -98,7 +112,7 @@ const VisualisationSection = ({
 }: SectionSwitchProps) => {
   const isTogglable = "on" in rest;
   if (isTogglable) {
-    const { on, onToggle } = rest;
+    const { on, onToggle, inactive } = rest;
     return (
       <Box
         sx={{
@@ -115,6 +129,7 @@ const VisualisationSection = ({
             alignItems: "center",
             justifyContent: "space-between",
             gap: "6px",
+            opacity: inactive ? "0.6" : "1",
           }}
         >
           <Typography variant={variant ?? "subtitle1"}>{title}</Typography>

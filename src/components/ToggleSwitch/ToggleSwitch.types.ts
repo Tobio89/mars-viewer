@@ -8,6 +8,7 @@ export interface ToggleLegendProps {
 export interface ToggleSwitchProps {
   title: string;
   on: boolean;
+  inactive: boolean;
   onToggle: (newValue: boolean) => void;
   legend?: ToggleLegendProps;
 }
@@ -16,6 +17,7 @@ export interface TitleSwitchProps {
   title: string;
   variant?: TypographyProps["variant"];
   on: boolean;
+  inactive: boolean;
   onToggle: (newValue: boolean) => void;
 }
 
@@ -26,6 +28,7 @@ interface InertSectionProps {
 }
 
 interface TogglableSectionProps extends InertSectionProps {
+  inactive: boolean;
   on: boolean;
   onToggle: (newValue: boolean) => void;
 }

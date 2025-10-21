@@ -49,6 +49,7 @@ const VisualizationControls = () => {
         title="Layer Controls"
         variant="h6"
         on={masterOn}
+        inactive={!masterOn}
         onToggle={(val) => {
           updateMaster(!val);
         }}
@@ -56,6 +57,7 @@ const VisualizationControls = () => {
       <VisualisationSection
         title="Regions and Features"
         on={drawRegionSection}
+        inactive={!masterOn || !drawRegionSection}
         onToggle={(val) => {
           updateDrawRegionSection(!val);
         }}
@@ -63,6 +65,7 @@ const VisualizationControls = () => {
         {visualizationConfig.pixelLayers.map((cfg, ind) => {
           return (
             <ToggleSwitch
+              inactive={!masterOn || !drawRegionSection || !redChannel[ind]}
               key={cfg.label}
               title={cfg.label}
               legend={cfg.legend}
@@ -77,6 +80,7 @@ const VisualizationControls = () => {
       <VisualisationSection
         title="Points of Interest"
         on={drawPointSection}
+        inactive={!masterOn || !drawPointSection}
         onToggle={(val) => updateDrawPointSection(!val)}
       >
         {visualizationConfig.pointLayers.map((cfg, ind) => {
@@ -85,6 +89,7 @@ const VisualizationControls = () => {
               key={cfg.label}
               title={cfg.label}
               legend={cfg.legend}
+              inactive={!masterOn || !drawPointSection || !pointControls[ind]}
               on={pointControls[ind].state}
               onToggle={(val) => {
                 pointControls[ind].onToggle(!val);
