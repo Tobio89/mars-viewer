@@ -2,18 +2,22 @@ import { Box } from "@mui/material";
 
 import { useVisualizationStore } from "../../store/store";
 
-import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
+import {
+  ToggleSwitch,
+  TitleSwitch,
+  VisualisationSection,
+} from "../../components/ToggleSwitch/ToggleSwitch";
 
 import { visualizationConfig } from "../../visualizationConfig";
-import {
-  VisualisationSection,
-  VisualisationTitle,
-} from "../../components/common";
 
 const VisualizationControls = () => {
   const {
     master: masterOn,
     updateMaster,
+    drawRegionSection,
+    updateDrawRegionSection,
+    drawPointSection,
+    updateDrawPointSection,
     redChannel,
     updateRedChannel,
     drawMountains,
@@ -41,18 +45,28 @@ const VisualizationControls = () => {
         alignItems: "flex-start",
       }}
     >
-      <VisualisationTitle>Visualisation Controls</VisualisationTitle>
-      <ToggleSwitch
-        title="Master"
+      <TitleSwitch
+        title="Layer Controls"
+        variant="h6"
         on={masterOn}
+        inactive={!masterOn}
         onToggle={(val) => {
           updateMaster(!val);
         }}
       />
-      <VisualisationSection title="Regions and Features">
+      <VisualisationSection
+        title="Regions and Features"
+        on={drawRegionSection}
+        inactive={!masterOn || !drawRegionSection}
+        onToggle={(val) => {
+          updateDrawRegionSection(!val);
+        }}
+      >
         {visualizationConfig.pixelLayers.map((cfg, ind) => {
           return (
             <ToggleSwitch
+              inactive={!masterOn || !drawRegionSection || !redChannel[ind]}
+              key={cfg.label}
               title={cfg.label}
               legend={cfg.legend}
               on={redChannel[ind]}
@@ -63,12 +77,19 @@ const VisualizationControls = () => {
           );
         })}
       </VisualisationSection>
-      <VisualisationSection title="Points of Interest">
+      <VisualisationSection
+        title="Points of Interest"
+        on={drawPointSection}
+        inactive={!masterOn || !drawPointSection}
+        onToggle={(val) => updateDrawPointSection(!val)}
+      >
         {visualizationConfig.pointLayers.map((cfg, ind) => {
           return (
             <ToggleSwitch
+              key={cfg.label}
               title={cfg.label}
               legend={cfg.legend}
+              inactive={!masterOn || !drawPointSection || !pointControls[ind]}
               on={pointControls[ind].state}
               onToggle={(val) => {
                 pointControls[ind].onToggle(!val);

@@ -4,7 +4,7 @@ import { ArrowRightAlt } from "@mui/icons-material";
 
 import Colorful from "@uiw/react-color-colorful";
 
-import ToggleSwitch from "src/components/ToggleSwitch/ToggleSwitch";
+import { ToggleSwitch } from "src/components/ToggleSwitch/ToggleSwitch";
 import { hsvaToRgba, hexToRgba } from "@uiw/color-convert";
 import { useAboutColorState } from "src/store/store";
 
@@ -226,7 +226,9 @@ export function BitmaskInteractive() {
       <Container sx={{ height: "420px" }}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
           {redLayers.map((layer, index) => {
-            return <LayerTag isOn={layer} label={`Layer ${index + 1}`} />;
+            return (
+              <LayerTag key={index} isOn={layer} label={`Layer ${index + 1}`} />
+            );
           })}
         </Box>
         <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
@@ -244,8 +246,10 @@ export function BitmaskInteractive() {
           {layerLabels.map((label, index) => {
             return (
               <ToggleSwitch
+                key={label}
                 legend={{ color: layerLegends[index], shape: "square" }}
                 title={`${index + 1}: ${label}`}
+                inactive={!switchState[index]}
                 on={switchState[index]}
                 onToggle={() => onToggle(index, !switchState[index])}
               />
