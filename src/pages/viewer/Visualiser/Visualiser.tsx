@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
 import useOSDHandlers from "../useOSDHandlers";
 
 import { useVisualizationStore } from "../../../store/store";
-import { commonConfig, viewerOptions } from "../../../const";
+import { commonConfig, url_prefix, viewerOptions } from "../../../const";
 import { visualizationConfig } from "../../../visualizationConfig";
 
 import type { VisualizerProps } from "./Visualizer.types";
@@ -70,13 +70,13 @@ const Visualiser = ({
           />
           <tiledImage
             index={0}
-            tileUrlBase={`${import.meta.env.VITE_API_URL}/tiles/base`}
+            tileUrlBase={url_prefix.tiles.base}
             tileMetadata={marsD4Metadata}
           />
           <bitmaskLayer
             index={1}
             isVisible={masterOn && drawRegionSection}
-            tileUrlBase={`${import.meta.env.VITE_API_URL}/tiles/annotated`}
+            tileUrlBase={url_prefix.tiles.annotated}
             tileMetadata={marsD4Metadata}
             options={options}
           />
