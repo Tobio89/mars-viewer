@@ -6,7 +6,6 @@ const Spinner = () => {
 }
 
 const LoadingIndicator = ({ title = 'Loading...' }: { title?: string }) => {
-
     return (
         <Box sx={{
             position: "fixed", top: 0, left: 0, width: '100%', height: '100vh', zIndex: 999999,

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import Visualiser from "./Visualiser/Visualiser";
 import SideBar from "./SideBar";
@@ -6,6 +6,7 @@ import useVisualisationRendering from "./useVisualisationRendering/useVisualisat
 import DetailTooltip from "./DetailTooltip";
 import useVisualisationData from "./useVisualisationData";
 import LoadingIndicator from "src/components/LoadingIndicator";
+import ErrorIndicator from "src/components/ErrorIndicator";
 
 
 const ViewerPage = () => {
@@ -18,35 +19,13 @@ const ViewerPage = () => {
 
   if (isLoading) {
     return (
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "row",
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        <LoadingIndicator />
-      </Box>
+      <LoadingIndicator />
     )
   }
 
   if (!metadata) {
     return (
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "row",
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        Metadata Didn't Load
-      </Box>
+      <ErrorIndicator />
     )
   }
   return (
