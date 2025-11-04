@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 
-const ErrorIndicator = () => {
+const ErrorIndicator = ({ message = "Error! Something's gone wrong" }: { message?: string }) => {
     return (
         <Box
             component="main"
@@ -18,7 +18,7 @@ const ErrorIndicator = () => {
 
                 <img src="/sad-white.png" style={{ height: '120px' }} />
                 <Typography variant="h5">
-                    Error! Failed to load Metadata
+                    {message}
                 </Typography>
             </Box>
         </Box>)

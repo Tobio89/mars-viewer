@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 import Visualiser from "./Visualiser/Visualiser";
 import SideBar from "./SideBar";
@@ -25,7 +25,7 @@ const ViewerPage = () => {
 
   if (!metadata) {
     return (
-      <ErrorIndicator />
+      <ErrorIndicator message="Error! Failed to load Metadata" />
     )
   }
   return (
