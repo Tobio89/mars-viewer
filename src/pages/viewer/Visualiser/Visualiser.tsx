@@ -1,48 +1,54 @@
-import { Ref } from "react";
+import { Ref, useMemo } from "react";
 import OpenSeadragon from "openseadragon";
+import { OrthographicView } from "@deck.gl/core";
 import OSDViewer, {
   OSDViewerRef,
   readXMLMetadata,
 } from "@lunit/osd-react-renderer";
 import { Box } from "@mui/material";
+
 import useOSDHandlers from "../useOSDHandlers";
 
 import { useVisualizationStore } from "../../../store/store";
 import { commonConfig, url_prefix, viewerOptions } from "../../../const";
 import { visualizationConfig } from "../../../visualizationConfig";
 
+
 import type { VisualizerProps } from "./Visualizer.types";
-import { OrthographicView } from "@deck.gl/core";
 
 const Visualiser = ({
-  onTooltipOverlayRedraw,
   onDeckGLOverlayRedraw,
   metadata,
 }: VisualizerProps) => {
+
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
   const {
-    redChannel,
     master: masterOn,
     drawRegionSection,
+    drawHeatmapSection,
+    redChannel,
+    greenChannel,
   } = useVisualizationStore();
 
-  const meta = readXMLMetadata(metadata)
+  // it's not this
+  const meta = useMemo(() => { return readXMLMetadata(metadata) }, [])
 
   const options = {
     channels: {
       red: {
         mode: "bitmask",
-        state: redChannel,
+        state: drawRegionSection ? redChannel : redChannel.map(() => false),
+        // state: [true, true, true, true, true, true],
         colorScheme: visualizationConfig.pixelLayers.map(
           (cfg) => cfg.legend.color
         ),
       },
-      // green: {
-      //   mode: "jet-heatmap",
-      //   state: true,
-      //   colorScheme: "jet",
-      // },
+      green: {
+        mode: "jet-heatmap",
+        state: drawHeatmapSection && greenChannel,
+        colorScheme: "jet",
+      },
     },
     blendMode: "blend",
     masterOpacity: "0.2",
@@ -69,7 +75,7 @@ const Visualiser = ({
           />
           <bitmaskLayer
             index={1}
-            isVisible={masterOn && drawRegionSection}
+            isVisible={masterOn && (drawRegionSection || drawHeatmapSection)}
             tileUrlBase={url_prefix.tiles.annotatedV2}
             tileMetadata={meta}
             options={options}
@@ -83,7 +89,6 @@ const Visualiser = ({
               onDeckGLOverlayRedraw(...args);
             }}
           />
-          <tooltipOverlay onRedraw={onTooltipOverlayRedraw} />
         </>
       </OSDViewer>
     </Box>

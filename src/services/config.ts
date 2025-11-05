@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { url_prefix } from "src/const";
 
+import type { VisualisationConfig } from "./types";
+
 async function fetchConfig() {
   const url = url_prefix.config;
   try {
@@ -17,7 +19,7 @@ async function fetchConfig() {
 }
 
 export const useVisConfig = () => {
-  const query = useQuery({
+  const query = useQuery<VisualisationConfig>({
     queryKey: ["config"],
     queryFn: async () => fetchConfig(),
   });

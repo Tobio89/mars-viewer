@@ -28,7 +28,7 @@ const useVisualisationRendering = () => {
     [updateMouseCoords]
   );
 
-  const onDeckGLOverlayRedraw = (viewer: OpenSeadragon.Viewer, deck: Deck) => {
+  const onDeckGLOverlayRedraw = useCallback((viewer: OpenSeadragon.Viewer, deck: Deck) => {
     clearLayers(deck);
     const { viewport } = viewer;
     const tiledImage = viewer.world.getItemAt(0);
@@ -73,7 +73,7 @@ const useVisualisationRendering = () => {
     ]);
 
     drawDeckLayer(deck, layers, viewState, layerFilter);
-  };
+  }, [])
 
   return {
     onTooltipOverlayRedraw,
