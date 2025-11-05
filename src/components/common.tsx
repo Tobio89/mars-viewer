@@ -50,7 +50,7 @@ export const AccordionSection = ({
 }) => {
   return (
     <PageSection>
-      <Accordion>
+      <Accordion sx={{ width: '100%' }}>
         <AccordionSummary>
           <Typography variant="h5">{summary}</Typography>
         </AccordionSummary>

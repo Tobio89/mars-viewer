@@ -45,3 +45,17 @@ export const viewerOptions = {
     dblClickToZoom: false,
   },
 };
+
+export const url_prefix = {
+  tiles: {
+    base: `${import.meta.env.VITE_API_URL}/tiles/base`,
+    annotated: `${import.meta.env.VITE_API_URL}/tiles/annotated`,
+    annotatedV2: `${import.meta.env.VITE_API_URL}/tiles/annotated-v2`,
+  },
+  metadata: {
+    base: `${import.meta.env.VITE_API_URL}/tiles/base/metadata.xml`,
+    annotated: `${import.meta.env.VITE_API_URL}/tiles/annotated/metadata.xml`,
+  },
+  data: `${import.meta.env.VITE_API_URL}/data`,
+  config: `${import.meta.env.VITE_API_URL}/config`,
+};

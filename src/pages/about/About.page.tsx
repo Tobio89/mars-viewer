@@ -152,6 +152,12 @@ function AboutPage() {
           this application.
         </Typography>
       </AccordionSection>
+      <AccordionSection summary="Attribution">
+        <Typography variant="body1">
+          The sad face you might see if the metadata fails to load comes from here:<br />
+          <a href="https://www.flaticon.com/free-icons/sad" title="sad icons">Sad icons created by Prashanth Rapolu 15 - Flaticon</a>
+        </Typography>
+      </AccordionSection>
     </PageContainer>
   );
 }

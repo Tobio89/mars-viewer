@@ -8,19 +8,16 @@ import { Box } from "@mui/material";
 import useOSDHandlers from "../useOSDHandlers";
 
 import { useVisualizationStore } from "../../../store/store";
-import { commonConfig, viewerOptions } from "../../../const";
+import { commonConfig, url_prefix, viewerOptions } from "../../../const";
 import { visualizationConfig } from "../../../visualizationConfig";
 
 import type { VisualizerProps } from "./Visualizer.types";
 import { OrthographicView } from "@deck.gl/core";
 
-const marsD4Metadata = readXMLMetadata(
-  `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="6" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="16384" Height="8192" /></Image>`
-);
-
 const Visualiser = ({
   onTooltipOverlayRedraw,
   onDeckGLOverlayRedraw,
+  metadata,
 }: VisualizerProps) => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
@@ -29,6 +26,8 @@ const Visualiser = ({
     master: masterOn,
     drawRegionSection,
   } = useVisualizationStore();
+
+  const meta = readXMLMetadata(metadata)
 
   const options = {
     channels: {
@@ -40,11 +39,6 @@ const Visualiser = ({
         ),
       },
       // green: {
-      //   mode: "bitmask",
-      //   state: [true, true, true, true],
-      //   colorScheme: ["#7292FD", "#EE5140", "#EE5140", "#7292FD"],
-      // },
-      // blue: {
       //   mode: "jet-heatmap",
       //   state: true,
       //   colorScheme: "jet",
@@ -70,14 +64,14 @@ const Visualiser = ({
           />
           <tiledImage
             index={0}
-            tileUrlBase={`${import.meta.env.VITE_API_URL}/tiles/base`}
-            tileMetadata={marsD4Metadata}
+            tileUrlBase={url_prefix.tiles.base}
+            tileMetadata={meta}
           />
           <bitmaskLayer
             index={1}
             isVisible={masterOn && drawRegionSection}
-            tileUrlBase={`${import.meta.env.VITE_API_URL}/tiles/annotated`}
-            tileMetadata={marsD4Metadata}
+            tileUrlBase={url_prefix.tiles.annotatedV2}
+            tileMetadata={meta}
             options={options}
           />
           <deckGLOverlay
