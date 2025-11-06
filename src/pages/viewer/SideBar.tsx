@@ -1,10 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import VisualizationControls from "./VisualizationControls";
-import { useMouseCoords } from "../../store/store";
 
-const SideBar = () => {
-  const { mouseCoords } = useMouseCoords();
+import type { VisualisationConfig } from "src/services/types";
 
+const SideBar = ({ config }: { config: VisualisationConfig }) => {
   return (
     <Box
       sx={{
@@ -13,11 +12,7 @@ const SideBar = () => {
         // borderRight: "3px solid #32373B",
       }}
     >
-      <VisualizationControls />
-      <Box sx={{ width: "100%", textAlign: "left" }}>
-        <Typography variant="body1">x: {mouseCoords.x}</Typography>
-        <Typography variant="body1">y: {mouseCoords.y}</Typography>
-      </Box>
+      <VisualizationControls config={config} />
     </Box>
   );
 };

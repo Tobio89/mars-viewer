@@ -1,5 +1,15 @@
 # Development Log
 
+### 2025-11-06
+
+Well, the app's deployed.
+
+Most recently, I have added a heatmap layer that's used to show the surface elevation. Cool!
+It's not terribly accurate. I had to kind of make it myself from another source image. It's pretty close though.
+
+I had some issues with the renderer lib where it wasn't reading state updates for the green channel. I went through that and fixed it all. I also changed the prop layout. It's a bit more inline with what I would want in a production format.
+
+
 ### 2025-10-18
 
 After thinking about it for a while, I've decided to split the two parts of the app.

@@ -11,9 +11,24 @@ const useVisualizationStore = create<VizState>((set) => ({
   master: true,
   updateMaster: (value: boolean) => set({ master: value }),
 
+  // Region and Heatmaps are mutually exclusive!
   drawRegionSection: true,
   updateDrawRegionSection: (value: boolean) =>
-    set({ drawRegionSection: value }),
+    set((state) => {
+      // set regions off if turning heatmap on
+      const newHeatmapState = value ? false : state.drawHeatmapSection
+      return { drawRegionSection: value, drawHeatmapSection: newHeatmapState }
+
+    }),
+
+  drawHeatmapSection: false,
+  updateDrawHeatmapSection: (value: boolean) =>
+    set((state) => {
+      // set regions off if turning heatmap on
+      const newRegionState = value ? false : state.drawRegionSection
+      return { drawHeatmapSection: value, drawRegionSection: newRegionState, greenChannel: value }
+    }),
+
 
   redChannel: [true, true, true, true, true, true],
   updateRedChannel: (index: number, value: boolean) =>
@@ -22,6 +37,11 @@ const useVisualizationStore = create<VizState>((set) => ({
       newState[index] = value;
       return { redChannel: newState, master: value ? true : state.master };
     }),
+
+  greenChannel: false,
+  updateGreenChannel: (value) => {
+    return { greenChannel: value }
+  },
 
   drawPointSection: true,
   updateDrawPointSection: (value: boolean) => set({ drawPointSection: value }),
@@ -49,9 +69,9 @@ const useTooltipState = create<TooltipState>((set) => ({
     set({
       tooltipData: data
         ? {
-            point: data.point,
-            data: data.data,
-          }
+          point: data.point,
+          data: data.data,
+        }
         : null,
     }),
 }));

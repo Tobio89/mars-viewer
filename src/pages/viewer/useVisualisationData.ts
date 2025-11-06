@@ -12,7 +12,6 @@ const useVisualisationData = () => {
     const { isLoading: loadingMarsMountainData, data: marsMountainData } =
         useMarsData("mountains");
 
-
     return {
         isLoading: loadingMetaData || loadingVisConfig || loadingMarsMissionData || loadingMarsMountainData,
         metadata,
