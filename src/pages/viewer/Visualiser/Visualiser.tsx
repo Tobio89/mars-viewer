@@ -1,4 +1,4 @@
-import { Ref, useEffect, useMemo } from "react";
+import { Ref, useMemo } from "react";
 import OpenSeadragon from "openseadragon";
 import { OrthographicView } from "@deck.gl/core";
 import OSDViewer, {

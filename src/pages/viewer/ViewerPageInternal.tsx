@@ -12,7 +12,7 @@ interface Props {
     localeData: object
 }
 
-const ViewerPageInternal = ({ metadata, config, localeData }: Props) => {
+const ViewerPageInternal = ({ metadata, config }: Props) => {
 
     const { onDeckGLOverlayRedraw } =
         useVisualisationRendering();
