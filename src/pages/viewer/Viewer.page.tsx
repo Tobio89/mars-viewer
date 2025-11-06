@@ -1,40 +1,36 @@
-import { Box } from "@mui/material";
+import LoadingIndicator from "src/components/LoadingIndicator";
+import ErrorIndicator from "src/components/ErrorIndicator";
 
-import Visualiser from "./Visualiser/Visualiser";
-import SideBar from "./SideBar";
-import useVisualisationRendering from "./useVisualisationRendering/useVisualisationRendering";
-import DetailTooltip from "./DetailTooltip";
+import useVisualisationData from "./useVisualisationData";
+import ViewerPageInternal from "./ViewerPageInternal";
 
 const ViewerPage = () => {
-  const { onTooltipOverlayRedraw, onDeckGLOverlayRedraw } =
-    useVisualisationRendering();
 
+  const { isLoading, metadata, config, localeData } = useVisualisationData()
+
+  if (isLoading) {
+    return (
+      <LoadingIndicator />
+    )
+  }
+
+  if (!metadata) {
+    return (
+      <ErrorIndicator message="Error! Failed to load Metadata" />
+    )
+  }
+
+  if (!config) {
+    return (
+      <ErrorIndicator message="Error! Failed to load Visualisation Config" />
+    )
+  }
   return (
-    <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        display: "flex",
-        flexDirection: "row",
-        height: "100%",
-        width: "100%",
-      }}
-    >
-      <SideBar />
-      <Box
-        component="main"
-        sx={() => ({
-          flexGrow: 1,
-          position: "relative",
-        })}
-      >
-        <DetailTooltip />
-        <Visualiser
-          onTooltipOverlayRedraw={onTooltipOverlayRedraw}
-          onDeckGLOverlayRedraw={onDeckGLOverlayRedraw}
-        />
-      </Box>
-    </Box>
+    <ViewerPageInternal
+      config={config}
+      metadata={metadata}
+      localeData={localeData}
+    />
   );
 };
 

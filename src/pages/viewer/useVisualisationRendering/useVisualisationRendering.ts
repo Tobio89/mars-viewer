@@ -9,10 +9,7 @@ import { LayerFilter } from "./useDeckGL.types";
 import { Deck } from "@deck.gl/core";
 import { useMouseCoords } from "src/store/store";
 
-// import marsLocaleData from "../../../marsLocaleData.json";
-
 const useVisualisationRendering = () => {
-  // const { mountains } = marsLocaleData;
 
   const { createPointLayers } = usePointRendering();
   const { drawDeckLayer, clearLayers, constructLayers } = useDeckGL();
@@ -73,7 +70,7 @@ const useVisualisationRendering = () => {
     ]);
 
     drawDeckLayer(deck, layers, viewState, layerFilter);
-  };
+  }
 
   return {
     onTooltipOverlayRedraw,
