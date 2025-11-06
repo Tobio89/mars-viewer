@@ -872,9 +872,9 @@
     "@luma.gl/constants" "9.0.28"
     "@probe.gl/env" "^4.0.2"
 
-"@lunit/osd-react-renderer@./lunit-osd-react-renderer-v2.1.0.tgz":
-  version "2.1.0"
-  resolved "./lunit-osd-react-renderer-v2.1.0.tgz#bfa3c5153d3ab2d72fb44ce600514f0b3a86aaf2"
+"@lunit/osd-react-renderer@./lunit-osd-react-renderer-v2.1.4.tgz":
+  version "2.1.4"
+  resolved "./lunit-osd-react-renderer-v2.1.4.tgz#92fe0ab66b2ec15cfab1e0cf704fd685afd9b6e2"
   dependencies:
     "@danmarshall/deckgl-typings" "^4.9.28"
     "@deck.gl/core" "9.0.34"

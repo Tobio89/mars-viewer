@@ -30,11 +30,15 @@ const usePointRendering = () => {
     useVisualizationStore();
   const { updateTooltipData } = useTooltipState();
 
+  console.log({ drawMountains, drawMissionSites, master })
+
   const createPointLayers = useCallback(
     // (viewer: OpenSeadragon.Viewer): DeckLayer[] => {
     (): DeckLayer[] => {
       const result: DeckLayer[] = [];
-      if (!master || !drawPointSection) return result;
+      if (!master || !drawPointSection) return [];
+
+
       if (drawMountains) {
         result.push(
           new ScatterplotLayer<PointData>({

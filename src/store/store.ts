@@ -14,11 +14,20 @@ const useVisualizationStore = create<VizState>((set) => ({
   // Region and Heatmaps are mutually exclusive!
   drawRegionSection: true,
   updateDrawRegionSection: (value: boolean) =>
-    set({ drawRegionSection: value, drawHeatmapSection: !value }),
+    set((state) => {
+      // set regions off if turning heatmap on
+      const newHeatmapState = value ? false : state.drawHeatmapSection
+      return { drawRegionSection: value, drawHeatmapSection: newHeatmapState }
+
+    }),
 
   drawHeatmapSection: false,
   updateDrawHeatmapSection: (value: boolean) =>
-    set({ drawHeatmapSection: value, drawRegionSection: !value, greenChannel: value }),
+    set((state) => {
+      // set regions off if turning heatmap on
+      const newRegionState = value ? false : state.drawRegionSection
+      return { drawHeatmapSection: value, drawRegionSection: newRegionState, greenChannel: value }
+    }),
 
 
   redChannel: [true, true, true, true, true, true],

@@ -1,4 +1,4 @@
-import { Ref, useMemo } from "react";
+import { Ref, useEffect, useMemo } from "react";
 import OpenSeadragon from "openseadragon";
 import { OrthographicView } from "@deck.gl/core";
 import OSDViewer, {
@@ -34,25 +34,25 @@ const Visualiser = ({
   // it's not this
   const meta = useMemo(() => { return readXMLMetadata(metadata) }, [])
 
-  const options = {
-    channels: {
-      red: {
-        mode: "bitmask",
-        state: drawRegionSection ? redChannel : redChannel.map(() => false),
-        // state: [true, true, true, true, true, true],
-        colorScheme: visualizationConfig.pixelLayers.map(
-          (cfg) => cfg.legend.color
-        ),
-      },
-      green: {
-        mode: "jet-heatmap",
-        state: drawHeatmapSection && greenChannel,
-        colorScheme: "jet",
-      },
+  const config = {
+    red: {
+      mode: "bitmask",
+      colorScheme: visualizationConfig.pixelLayers.map(
+        (cfg) => cfg.legend.color
+      ),
     },
-    blendMode: "blend",
-    masterOpacity: "0.2",
+    green: {
+      mode: "jet-heatmap",
+      colorScheme: "jet",
+    }
   };
+
+
+  const channelState = {
+    red: (masterOn && drawRegionSection) ? redChannel : redChannel.map(() => false),
+    green: (masterOn && drawHeatmapSection && greenChannel)
+  }
+
 
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
@@ -75,10 +75,13 @@ const Visualiser = ({
           />
           <bitmaskLayer
             index={1}
-            isVisible={masterOn && (drawRegionSection || drawHeatmapSection)}
+            isVisible
+            blendMode={'blend'}
+            masterOpacity={0.6}
+            config={config}
+            channelState={channelState}
             tileUrlBase={url_prefix.tiles.annotatedV2}
             tileMetadata={meta}
-            options={options}
           />
           <deckGLOverlay
             views={[
