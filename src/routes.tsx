@@ -1,5 +1,5 @@
 import ViewerPage from "./pages/viewer/Viewer.page";
-import AboutPage from "./pages/about/About.page";
+import AboutPage from "./pages/about/AboutV2.page";
 
 const router = [
   {
@@ -7,7 +7,7 @@ const router = [
     element: <ViewerPage />,
   },
   {
-    path: "/about",
+    path: "/about/*",
     element: <AboutPage />,
   },
 ];
