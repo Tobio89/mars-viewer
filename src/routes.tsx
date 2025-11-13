@@ -7,7 +7,7 @@ const router = [
     element: <ViewerPage />,
   },
   {
-    path: "/about",
+    path: "/about/*",
     element: <AboutPage />,
   },
 ];

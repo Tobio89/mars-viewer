@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, TypographyProps } from "@mui/material";
 import { Link, useLocation } from "react-router";
 import theme from "../theme";
 
@@ -6,10 +6,12 @@ export default function PageLink({
   to,
   title,
   children,
+  variant = "body1"
 }: {
   to: string;
   title?: string;
   children?: React.ReactNode;
+  variant?: TypographyProps['variant']
 }) {
   const isActive = useLocation().pathname === to;
 
@@ -20,7 +22,7 @@ export default function PageLink({
   return (
     <Link to={to}>
       <Typography
-        variant="body1"
+        variant={variant}
         sx={{
           textDecoration: "none",
           color: isActive
