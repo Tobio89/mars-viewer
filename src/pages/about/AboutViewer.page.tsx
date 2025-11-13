@@ -10,7 +10,7 @@ function AboutViewer() {
     return (
         <>
             <PageSection>
-                <Typography variant="h4">
+                <Typography variant="h4" sx={{ paddingTop: '20px' }}>
                     The Mars Viewer
                 </Typography>
                 <Typography variant="body1">
@@ -20,7 +20,7 @@ function AboutViewer() {
                     rendering techniques, show different aspects of our neighbouring
                     planet.
                 </Typography>
-                <Typography variant="h4">
+                <Typography variant="h4" sx={{ paddingTop: '20px' }}>
                     About the Visualisation
                 </Typography>
                 <Typography>
@@ -51,7 +51,7 @@ function AboutViewer() {
                     overlay, and a prototype bit-masked tiled image overlay, to render the
                     data.
                 </Typography>
-                <Typography variant="h4">
+                <Typography variant="h4" sx={{ paddingTop: '20px' }}>
                     Bit-Masked Rendering Technique
                 </Typography>
                 <Typography variant="body1">
@@ -76,7 +76,7 @@ function AboutViewer() {
                     64 layers of data!
                 </Typography>
                 <BitmaskInteractive />
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ paddingBottom: '40px' }}>
                     The workflow I created allows the user to toggle on or off any of
                     these layers. If the pixel has a 1 in a given position, and its toggle
                     is on, that layer's configured colour is added into the final colour
