@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
 import { useRoutes } from "react-router";
 
-import HeaderBar from "./components/HeaderBar";
+import TitleBar from "./components/ui/TitleBar";
+
 import router from "./routes";
 
 import "./App.css";
@@ -18,7 +19,7 @@ function App() {
         flexDirection: "column",
       }}
     >
-      <HeaderBar />
+      <TitleBar />
       {element}
     </Box>
   );
