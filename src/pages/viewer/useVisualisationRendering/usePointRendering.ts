@@ -8,7 +8,7 @@ import { visualizationConfig } from "src/assets/visualizationConfig";
 import type { DeckLayer } from "./useDeckGL.types";
 import type { RGBAColor } from "@deck.gl/core";
 
-import marsLocaleData from "../../../marsLocaleData.json";
+import marsLocaleData from "src/assets/marsLocaleData.json";
 interface PointData {
   name: string;
   point: { x: number; y: number };

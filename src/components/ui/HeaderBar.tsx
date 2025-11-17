@@ -3,7 +3,7 @@ import PageLink from "./PageLink";
 
 import { app_colours } from "../../consts";
 
-import MarsIcon from "../assets/MarsIcon.png";
+import MarsIcon from "../../assets/MarsIcon.png";
 
 const HeaderSection = styled(Box)({
   display: "flex",
