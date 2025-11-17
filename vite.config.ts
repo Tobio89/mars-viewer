@@ -12,6 +12,17 @@ export default defineConfig({
       root: "../../",
     }),
   ],
+  resolve: {
+    alias: {
+      "@ui/*": "src/components/ui/*",
+      "@components/*": "src/components/*",
+      "@pages/*": "src/pages/*",
+      "@consts/*": "src/consts/*",
+      "@assets/*": "src/assets/*",
+      "@services/*": "src/services/*",
+      "@store/*": "src/store/*",
+    },
+  },
   esbuild: {
     target: "ESNext",
   },

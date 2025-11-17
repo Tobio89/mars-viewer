@@ -1,8 +1,9 @@
 import { Box } from "@mui/material";
 import { useRoutes } from "react-router";
 
-import HeaderBar from "./components/HeaderBar";
-import router from "./routes";
+import HeaderBar from "../ui/HeaderBar";
+
+import router from "@consts/routes";
 
 import "./App.css";
 
