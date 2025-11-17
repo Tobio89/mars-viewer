@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { url_prefix } from "src/const";
+import { url_prefix } from "src/consts";
 
 async function fetchMarsData(dataCategory: string) {
   const url = `${url_prefix.data}/${dataCategory}`;

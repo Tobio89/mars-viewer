@@ -6,7 +6,7 @@ import {
   ToggleSwitch,
   TitleSwitch,
   VisualisationSection,
-} from "../../components/ToggleSwitch/ToggleSwitch";
+} from "../../components/ui/ToggleSwitch/ToggleSwitch";
 
 // import { visualizationConfig } from "../../visualizationConfig";
 

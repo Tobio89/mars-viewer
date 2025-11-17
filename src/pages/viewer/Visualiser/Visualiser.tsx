@@ -10,17 +10,12 @@ import { Box } from "@mui/material";
 import useOSDHandlers from "../useOSDHandlers";
 
 import { useVisualizationStore } from "../../../store/store";
-import { commonConfig, url_prefix, viewerOptions } from "../../../const";
-import { visualizationConfig } from "../../../visualizationConfig";
-
+import { commonConfig, url_prefix, viewerOptions } from "../../../consts";
+import { visualizationConfig } from "../../../assets/visualizationConfig";
 
 import type { VisualizerProps } from "./Visualizer.types";
 
-const Visualiser = ({
-  onDeckGLOverlayRedraw,
-  metadata,
-}: VisualizerProps) => {
-
+const Visualiser = ({ onDeckGLOverlayRedraw, metadata }: VisualizerProps) => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
   const {
@@ -32,7 +27,9 @@ const Visualiser = ({
   } = useVisualizationStore();
 
   // it's not this
-  const meta = useMemo(() => { return readXMLMetadata(metadata) }, [])
+  const meta = useMemo(() => {
+    return readXMLMetadata(metadata);
+  }, []);
 
   const config = {
     red: {
@@ -44,15 +41,14 @@ const Visualiser = ({
     green: {
       mode: "jet-heatmap",
       colorScheme: "jet",
-    }
+    },
   };
 
-
   const channelState = {
-    red: (masterOn && drawRegionSection) ? redChannel : redChannel.map(() => false),
-    green: (masterOn && drawHeatmapSection && greenChannel)
-  }
-
+    red:
+      masterOn && drawRegionSection ? redChannel : redChannel.map(() => false),
+    green: masterOn && drawHeatmapSection && greenChannel,
+  };
 
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
@@ -76,7 +72,7 @@ const Visualiser = ({
           <bitmaskLayer
             index={1}
             isVisible
-            blendMode={'blend'}
+            blendMode={"blend"}
             masterOpacity={0.6}
             config={config}
             channelState={channelState}

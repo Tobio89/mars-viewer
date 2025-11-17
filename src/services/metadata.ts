@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { url_prefix } from "src/const";
+import { url_prefix } from "src/consts";
 
 async function fetchMetadata(tileName: string) {
   const url =

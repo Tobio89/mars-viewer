@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { ScatterplotLayer } from "@deck.gl/layers";
 
 import { useTooltipState, useVisualizationStore } from "src/store/store";
-import { visualizationConfig } from "src/visualizationConfig";
+import { visualizationConfig } from "src/assets/visualizationConfig";
 
 import type { DeckLayer } from "./useDeckGL.types";
 import type { RGBAColor } from "@deck.gl/core";
@@ -30,14 +30,13 @@ const usePointRendering = () => {
     useVisualizationStore();
   const { updateTooltipData } = useTooltipState();
 
-  console.log({ drawMountains, drawMissionSites, master })
+  console.log({ drawMountains, drawMissionSites, master });
 
   const createPointLayers = useCallback(
     // (viewer: OpenSeadragon.Viewer): DeckLayer[] => {
     (): DeckLayer[] => {
       const result: DeckLayer[] = [];
       if (!master || !drawPointSection) return [];
-
 
       if (drawMountains) {
         result.push(
