@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Box, styled, Tooltip, Typography } from "@mui/material";
 import { ArrowRightAlt } from "@mui/icons-material";
-
 import Colorful from "@uiw/react-color-colorful";
-
-import { ToggleSwitch } from "src/components/ToggleSwitch/ToggleSwitch";
 import { hsvaToRgba, hexToRgba } from "@uiw/color-convert";
-import { useAboutColorState } from "src/store/store";
+
+import { useAboutColorState } from "@store/store";
+import { ToggleSwitch } from "@ui/ToggleSwitch/ToggleSwitch";
 
 function LayerTag({ isOn, label }: { isOn: boolean; label: string }) {
   return (
@@ -77,7 +76,7 @@ export function BitmaskExplanation() {
         flexDirection: "column",
         alignItems: "center",
         padding: "60px 80px",
-        width: '100%'
+        width: "100%",
       }}
     >
       <Container>
@@ -222,7 +221,7 @@ export function BitmaskInteractive() {
         flexDirection: "column",
         alignItems: "center",
         padding: "60px 80px",
-        width: '100%'
+        width: "100%",
       }}
     >
       <Container sx={{ height: "420px" }}>
@@ -246,8 +245,9 @@ export function BitmaskInteractive() {
           }}
         >
           {layerLabels.map((label, index) => {
-
-            const legendColor = redLayers[index] ? layerLegends[index] : 'transparent'
+            const legendColor = redLayers[index]
+              ? layerLegends[index]
+              : "transparent";
             return (
               <ToggleSwitch
                 key={label}
@@ -267,8 +267,9 @@ export function BitmaskInteractive() {
             height: "100px",
             border: `2px solid white`,
             borderRadius: "4px",
-            backgroundColor: `rgba(${getFinalColor().r}, ${getFinalColor().g
-              }, ${getFinalColor().b}, ${getFinalColor().a})`,
+            backgroundColor: `rgba(${getFinalColor().r}, ${
+              getFinalColor().g
+            }, ${getFinalColor().b}, ${getFinalColor().a})`,
           }}
         />
       </Container>

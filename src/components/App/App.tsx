@@ -1,9 +1,8 @@
 import { Box } from "@mui/material";
 import { useRoutes } from "react-router";
 
-import TitleBar from "./components/ui/TitleBar";
-
-import router from "./routes";
+import TitleBar from "@ui/TitleBar";
+import router from "@consts/routes";
 
 import "./App.css";
 

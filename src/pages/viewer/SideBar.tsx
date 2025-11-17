@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import VisualizationControls from "./VisualizationControls";
 
-import type { VisualisationConfig } from "src/services/types";
+import type { VisualisationConfig } from "@services/types";
 
 const SideBar = ({ config }: { config: VisualisationConfig }) => {
   return (
