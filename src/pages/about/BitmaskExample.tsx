@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Box, styled, Tooltip, Typography } from "@mui/material";
 import { ArrowRightAlt } from "@mui/icons-material";
-
 import Colorful from "@uiw/react-color-colorful";
-
-import { ToggleSwitch } from "src/components/ui/ToggleSwitch/ToggleSwitch";
 import { hsvaToRgba, hexToRgba } from "@uiw/color-convert";
-import { useAboutColorState } from "src/store/store";
+
+import { useAboutColorState } from "@store/store";
+import { ToggleSwitch } from "@ui/ToggleSwitch/ToggleSwitch";
 
 function LayerTag({ isOn, label }: { isOn: boolean; label: string }) {
   return (

@@ -1,7 +1,7 @@
 import { Typography, TypographyProps } from "@mui/material";
 import { Link, useLocation } from "react-router";
 
-import theme from "src/consts/theme";
+import theme from "@consts/theme";
 
 export default function PageLink({
   to,

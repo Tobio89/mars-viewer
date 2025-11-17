@@ -1,7 +1,8 @@
 import { useRoutes } from "react-router";
 import { Box, Typography } from "@mui/material";
-import { PageContainer, PageSection } from "../../components/ui/common";
-import PageLink from "src/components/ui/PageLink";
+
+import { PageContainer, PageSection } from "@ui/common";
+import PageLink from "@ui/PageLink";
 
 import AboutViewer from "./AboutViewer.page";
 import AboutHome from "./AboutHome.page";

@@ -1,16 +1,14 @@
 import { Box } from "@mui/material";
 
-import { useVisualizationStore } from "../../store/store";
+import { useVisualizationStore } from "@store/store";
 
 import {
   ToggleSwitch,
   TitleSwitch,
   VisualisationSection,
-} from "../../components/ui/ToggleSwitch/ToggleSwitch";
+} from "@ui/ToggleSwitch/ToggleSwitch";
 
-// import { visualizationConfig } from "../../visualizationConfig";
-
-import type { VisualisationConfig } from "src/services/types";
+import type { VisualisationConfig } from "@services/types";
 
 const VisualizationControls = ({ config }: { config: VisualisationConfig }) => {
   const {

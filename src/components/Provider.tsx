@@ -2,8 +2,8 @@ import { BrowserRouter } from "react-router";
 import { ThemeProvider } from "@mui/material";
 import { QueryClientProvider } from "@tanstack/react-query";
 
-import theme from "src/consts/theme";
-import queryClient from "src/consts/queryClient";
+import theme from "@consts/theme";
+import queryClient from "@consts/queryClient";
 
 import type { PropsWithChildren } from "react";
 

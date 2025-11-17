@@ -2,13 +2,13 @@ import { useCallback } from "react";
 
 import { ScatterplotLayer } from "@deck.gl/layers";
 
-import { useTooltipState, useVisualizationStore } from "src/store/store";
-import { visualizationConfig } from "src/assets/visualizationConfig";
+import { visualizationConfig } from "@assets/visualizationConfig";
+import { useTooltipState, useVisualizationStore } from "@store/store";
 
 import type { DeckLayer } from "./useDeckGL.types";
 import type { RGBAColor } from "@deck.gl/core";
 
-import marsLocaleData from "src/assets/marsLocaleData.json";
+import marsLocaleData from "@assets/marsLocaleData.json";
 interface PointData {
   name: string;
   point: { x: number; y: number };

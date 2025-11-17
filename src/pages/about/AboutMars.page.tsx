@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { PageSection } from "src/components/ui/common";
+import { PageSection } from "@ui/common";
 
 const MarsFeatureTitle = ({ children }: { children: React.ReactNode }) => {
   return (

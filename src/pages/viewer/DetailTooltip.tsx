@@ -1,5 +1,7 @@
 import { Typography } from "@mui/material";
-import { useTooltipState } from "../../store/store";
+
+import { useTooltipState } from "@store/store";
+
 import {
   DetailTooltipContainer,
   TooltipTriangle,

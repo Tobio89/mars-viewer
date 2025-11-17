@@ -1,9 +1,8 @@
 import { AppBar, Box, styled, Typography } from "@mui/material";
 import PageLink from "./PageLink";
 
-import { app_colours } from "../../consts";
-
-import MarsIcon from "../../assets/MarsIcon.png";
+import MarsIcon from "@assets/MarsIcon.png";
+import { app_colours } from "@consts/index";
 
 const HeaderSection = styled(Box)({
   display: "flex",

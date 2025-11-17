@@ -9,9 +9,9 @@ import { Box } from "@mui/material";
 
 import useOSDHandlers from "../useOSDHandlers";
 
-import { useVisualizationStore } from "../../../store/store";
-import { commonConfig, url_prefix, viewerOptions } from "../../../consts";
-import { visualizationConfig } from "../../../assets/visualizationConfig";
+import { visualizationConfig } from "@assets/visualizationConfig";
+import { commonConfig, url_prefix, viewerOptions } from "@consts/index";
+import { useVisualizationStore } from "@store/store";
 
 import type { VisualizerProps } from "./Visualizer.types";
 

@@ -1,5 +1,5 @@
-import LoadingIndicator from "src/components/ui/LoadingIndicator";
-import ErrorIndicator from "src/components/ui/ErrorIndicator";
+import LoadingIndicator from "@ui/LoadingIndicator";
+import ErrorIndicator from "@ui/ErrorIndicator";
 
 import useVisualisationData from "./useVisualisationData";
 import ViewerPageInternal from "./ViewerPageInternal";

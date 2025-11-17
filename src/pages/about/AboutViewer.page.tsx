@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { PageSection } from "src/components/ui/common";
+import { PageSection } from "@ui/common";
 import { BitmaskExplanation, BitmaskInteractive } from "./BitmaskExample";
 
 function AboutViewer() {

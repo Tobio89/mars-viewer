@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { url_prefix } from "src/consts";
+import { url_prefix } from "@consts/index";
 
 import type { VisualisationConfig } from "./types";
 

@@ -3,7 +3,7 @@ import { useRoutes } from "react-router";
 
 import HeaderBar from "../ui/HeaderBar";
 
-import router from "src/consts/routes";
+import router from "@consts/routes";
 
 import "./App.css";
 
