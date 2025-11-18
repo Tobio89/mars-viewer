@@ -1,5 +1,3 @@
-import { Typography } from "@mui/material";
-
 import { useTooltipState } from "@store/store";
 
 import {
@@ -33,23 +31,10 @@ const DetailTooltip = () => {
           left: left + width - 30,
         }}
       />
-      <Typography
-        variant="h5"
-        sx={{
-          width: "100%",
-          borderRadius: "6px",
-          textAlign: "left",
-          padding: "4px",
-        }}
-      >
+      <h5 className="text-2xl w-full rounded-md text-left p-1">
         {tooltipData.data.name}
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{ textAlign: "left", padding: "4px 8px" }}
-      >
-        {tooltipData.data.description}
-      </Typography>
+      </h5>
+      <p className="text-left px-1.5 py-2">{tooltipData.data.description}</p>
     </DetailTooltipContainer>
   );
 };

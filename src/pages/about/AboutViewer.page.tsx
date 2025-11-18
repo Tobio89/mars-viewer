@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import { PageSection } from "@ui/common";
 import { BitmaskExplanation, BitmaskInteractive } from "./BitmaskExample";
 
@@ -6,20 +5,16 @@ function AboutViewer() {
   return (
     <>
       <PageSection>
-        <Typography variant="h4" sx={{ paddingTop: "20px" }}>
-          The Mars Viewer
-        </Typography>
-        <Typography variant="body1">
+        <h4 className="text-3xl pt-9">The Mars Viewer</h4>
+        <article>
           Mars Viewer is a portfolio project to demonstrate Deep Zoom-based
           visualisation, in particular, bit-masked tiled image visualisation. It
           has multiple layers of data visualization that, using different
           rendering techniques, show different aspects of our neighbouring
           planet.
-        </Typography>
-        <Typography variant="h4" sx={{ paddingTop: "20px" }}>
-          About the Visualisation
-        </Typography>
-        <Typography>
+        </article>
+        <h4 className="text-3xl pt-9">About the Visualisation</h4>
+        <article>
           This app uses a library called{" "}
           <a
             href="https://openseadragon.github.io/"
@@ -46,11 +41,9 @@ function AboutViewer() {
           top of the base tile. This app utilises a tooltip overlay, a DeckGL
           overlay, and a prototype bit-masked tiled image overlay, to render the
           data.
-        </Typography>
-        <Typography variant="h4" sx={{ paddingTop: "20px" }}>
-          Bit-Masked Rendering Technique
-        </Typography>
-        <Typography variant="body1">
+        </article>
+        <h4 className="text-3xl pt-9">Bit-Masked Rendering Technique</h4>
+        <article>
           It's a technique that allows us to store multiple indexed layers of
           pixel-based data in a single image file. Typically, a PNG is an image
           file that has 4 colour channels - red, green, blue, and alpha. The
@@ -58,9 +51,9 @@ function AboutViewer() {
           example - 230, 126, 15, 255 - which makes the colour of this app's
           logo text. An 8-bit number just means the computer gives us eight 0s
           or 1s that represent a number, such as 11100110.
-        </Typography>
+        </article>
         <BitmaskExplanation />
-        <Typography variant="body1">
+        <article>
           Bit masking refers to a technique that lets us select individual
           values from a binary number. What if, instead of reading 11100110 as
           the number 230, we use it to mean 'this pixel belongs to any layer
@@ -70,9 +63,9 @@ function AboutViewer() {
           pixel can belong to any and all layers, in any channel. Eight layers
           in four channels, means a pixel can belong to any combination of up to
           64 layers of data!
-        </Typography>
+        </article>
         <BitmaskInteractive />
-        <Typography variant="body1" sx={{ paddingBottom: "40px" }}>
+        <article sx={{ paddingBottom: "40px" }}>
           The workflow I created allows the user to toggle on or off any of
           these layers. If the pixel has a 1 in a given position, and its toggle
           is on, that layer's configured colour is added into the final colour
@@ -82,7 +75,7 @@ function AboutViewer() {
           resolution as the base layer, and match its level of detail. This is
           particularly useful in the biomedical field, where scanner resolutions
           are always increasing.
-        </Typography>
+        </article>
       </PageSection>
     </>
   );
