@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import DetailTooltip from "./DetailTooltip";
 import SideBar from "./SideBar";
 import Visualiser from "./Visualiser/Visualiser";
@@ -16,31 +15,16 @@ const ViewerPageInternal = ({ metadata, config }: Props) => {
   const { onDeckGLOverlayRedraw } = useVisualisationRendering();
 
   return (
-    <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        display: "flex",
-        flexDirection: "row",
-        height: "100%",
-        width: "100%",
-      }}
-    >
+    <main className="flex flex-1 h-full w-full">
       <SideBar config={config} />
-      <Box
-        component="main"
-        sx={() => ({
-          flexGrow: 1,
-          position: "relative",
-        })}
-      >
+      <div className="flex-1 relative">
         <DetailTooltip />
         <Visualiser
           metadata={metadata}
           onDeckGLOverlayRedraw={onDeckGLOverlayRedraw}
         />
-      </Box>
-    </Box>
+      </div>
+    </main>
   );
 };
 

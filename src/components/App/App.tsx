@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useRoutes } from "react-router";
 
 import TitleBar from "@ui/TitleBar";
@@ -10,17 +9,10 @@ function App() {
   const element = useRoutes(router);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        width: "100vw",
-        height: "100vh",
-        flexDirection: "column",
-      }}
-    >
+    <main className="flex w-screen h-screen flex-col">
       <TitleBar />
       {element}
-    </Box>
+    </main>
   );
 }
 

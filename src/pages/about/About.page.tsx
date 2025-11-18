@@ -1,5 +1,4 @@
 import { useRoutes } from "react-router";
-import { Box, Typography } from "@mui/material";
 
 import { PageContainer, PageSection } from "@ui/common";
 import PageLink from "@ui/PageLink";
@@ -34,21 +33,14 @@ function AboutPage() {
   return (
     <PageContainer>
       <PageSection>
-        <Typography variant="h3">About</Typography>
+        <h3 className="text-4xl">About</h3>
       </PageSection>
       <PageSection>
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-          component="div"
-        >
-          <PageLink to="/about/viewer" title="Mars Viewer" variant="h4" />
-          <PageLink to="/about/mars" title="The Planet" variant="h4" />
-          <PageLink to="/about/developer" title="The Developer" variant="h4" />
-        </Box>
+        <div className="flex w-full justify-between">
+          <PageLink to="/about/viewer" title="Mars Viewer" />
+          <PageLink to="/about/mars" title="The Planet" />
+          <PageLink to="/about/developer" title="The Developer" />
+        </div>
       </PageSection>
       {element}
     </PageContainer>

@@ -1,5 +1,3 @@
-import type { TypographyProps } from "@mui/material";
-
 export interface ToggleLegendProps {
   color: string;
   shape: "circle" | "square" | string;
@@ -15,7 +13,6 @@ export interface ToggleSwitchProps {
 
 export interface TitleSwitchProps {
   title: string;
-  variant?: TypographyProps["variant"];
   on: boolean;
   inactive: boolean;
   onToggle: (newValue: boolean) => void;
@@ -24,7 +21,6 @@ export interface TitleSwitchProps {
 interface InertSectionProps {
   title: string;
   children: React.ReactNode;
-  variant?: TypographyProps["variant"];
 }
 
 interface TogglableSectionProps extends InertSectionProps {
@@ -35,7 +31,7 @@ interface TogglableSectionProps extends InertSectionProps {
 
 export interface SwitchProps {
   checked: boolean;
-  onChange: (value: boolean) => void;
+  onChange: () => void;
 }
 
 export type SectionSwitchProps = InertSectionProps | TogglableSectionProps;

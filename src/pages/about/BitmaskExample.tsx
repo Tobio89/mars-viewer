@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, styled, Tooltip, Typography } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import { ArrowRightAlt } from "@mui/icons-material";
 import Colorful from "@uiw/react-color-colorful";
 import { hsvaToRgba, hexToRgba } from "@uiw/color-convert";
@@ -9,52 +9,40 @@ import { ToggleSwitch } from "@ui/ToggleSwitch/ToggleSwitch";
 
 function LayerTag({ isOn, label }: { isOn: boolean; label: string }) {
   return (
-    <Typography
-      variant="caption"
-      sx={{
+    <p
+      className="rounded-xs py-1"
+      style={{
         background: isOn ? "white" : "unset",
         color: isOn ? "black" : "white",
-        borderRadius: "2px",
-        padding: "0 4px",
       }}
     >
       {label}
-    </Typography>
+    </p>
   );
 }
 
-const Container = styled(Box)({
-  display: "flex",
-  flexDirection: "row",
-  gap: "40px",
-  alignItems: "center",
-  height: "200px",
-  width: "100%",
-  justifyContent: "space-evenly",
-  // padding: "0",
-});
+const Container = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-row gap-10 items-center h-52 w-full justify-evenly">
+    {children}
+  </div>
+);
 
 function BinaryBreakdown({ binary }: { binary: string }) {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: "1px" }}>
+    <div className="flex items-center gap-px">
       {binary.split("").map((bit, index) => (
-        <Typography
-          variant="body1"
+        <p
           key={index}
-          sx={{
-            width: "24px",
-            height: "24px",
-            textAlign: "center",
-            padding: "1px 1px",
-            borderRadius: "2px",
+          className="w-6 h-6 text-center rounded-xs p-px"
+          style={{
             background: bit === "1" ? "white" : "#252525",
             color: bit === "1" ? "#252525" : "white",
           }}
         >
           {bit}
-        </Typography>
+        </p>
       ))}
-    </Box>
+    </div>
   );
 }
 
@@ -70,15 +58,7 @@ export function BitmaskExplanation() {
   const aBinary = alpha.toString(2).padStart(8, "0");
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "60px 80px",
-        width: "100%",
-      }}
-    >
+    <article className="flex flex-col w-full items-center px-[60px] py-[80px]">
       <Container>
         <Tooltip
           title={
@@ -88,52 +68,31 @@ export function BitmaskExplanation() {
             />
           }
         >
-          <Box
-            sx={{
-              width: "100px",
-              height: "100px",
-              border: `2px solid white`,
+          <div
+            className="w-24 h-24 border-2 border-white rounded-sm cursor-pointer"
+            style={{
               backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
-              borderRadius: "4px",
-              cursor: "pointer",
             }}
           />
         </Tooltip>
         <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2px",
-            fontFamily: "monospace",
-            width: "60px",
-          }}
-        >
-          <Typography variant="body1">r: {rgb.r}</Typography>
-          <Typography variant="body1">g: {rgb.g}</Typography>
-          <Typography variant="body1">b: {rgb.b}</Typography>
-          <Typography variant="body1">a: {alpha}</Typography>
-        </Box>
+        <div className="flex flex-col gap-0.5 font-mono w-[60px]">
+          <p>r: {rgb.r}</p>
+          <p>g: {rgb.g}</p>
+          <p>b: {rgb.b}</p>
+          <p>a: {alpha}</p>
+        </div>
 
         <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2px",
-            fontFamily: "monospace",
-          }}
-        >
+        <div className="flex flex-col gap-0.5 font-mono">
           <BinaryBreakdown binary={rBinary} />
           <BinaryBreakdown binary={gBinary} />
           <BinaryBreakdown binary={bBinary} />
           <BinaryBreakdown binary={aBinary} />
-        </Box>
+        </div>
       </Container>
-      <Typography variant="caption">
-        Hover over the colour box to change the colour!
-      </Typography>
-    </Box>
+      <p className="text-sm">Hover over the colour box to change the colour!</p>
+    </article>
   );
 }
 
@@ -215,35 +174,17 @@ export function BitmaskInteractive() {
   }
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "60px 80px",
-        width: "100%",
-      }}
-    >
-      <Container sx={{ height: "420px" }}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+    <article className="flex flex-col items-center w-full px-[60px] py-[80px]">
+      <div className="flex flex-row gap-10 items-center w-full h-[420px] justify-evenly">
+        <div className="flex flex-col gap-0.5">
           {redLayers.map((layer, index) => {
             return (
               <LayerTag key={index} isOn={layer} label={`Layer ${index + 1}`} />
             );
           })}
-        </Box>
+        </div>
         <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2px",
-            width: "240px",
-            background: "#252525",
-            padding: "6px 12px",
-            borderRadius: "4px",
-          }}
-        >
+        <div className="flex flex-col gap-1 w-[240px] bg-neutral-800 p-4 rounded-md">
           {layerLabels.map((label, index) => {
             const legendColor = redLayers[index]
               ? layerLegends[index]
@@ -259,26 +200,23 @@ export function BitmaskInteractive() {
               />
             );
           })}
-        </Box>
+        </div>
         <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            width: "100px",
-            height: "100px",
-            border: `2px solid white`,
-            borderRadius: "4px",
+        <div
+          className="w-24 h-24 border-2 border-white rounded-sm"
+          style={{
             backgroundColor: `rgba(${getFinalColor().r}, ${
               getFinalColor().g
             }, ${getFinalColor().b}, ${getFinalColor().a})`,
           }}
         />
-      </Container>
-      <Typography variant="caption" sx={{ textAlign: "center" }}>
+      </div>
+      <p className="text-sm text-center">
         Use the switches to change the final colour of the pixel! <br />
         The layers are configured according to the red channel above.
         <br /> If pixel doesn't belong to the layer, it will not be included in
         the final colour!
-      </Typography>
-    </Box>
+      </p>
+    </article>
   );
 }

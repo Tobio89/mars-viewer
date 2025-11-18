@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import type {
   SectionSwitchProps,
   SwitchProps,
@@ -27,7 +26,7 @@ const SwitchButton = ({ checked, onChange }: SwitchProps) => {
   }`;
 
   return (
-    <div className="flex flex-row items-center w-full">
+    <div className="flex flex-row items-center">
       <button
         className="bg-transparent! border-0 p-0 m-0 cursor-pointer h-[40px] w-[64px] flex items-center justify-center"
         onClick={() => onChange()}
@@ -46,20 +45,14 @@ const SwitchButton = ({ checked, onChange }: SwitchProps) => {
 const ToggleLegend = ({ color, shape }: ToggleLegendProps) => {
   if (shape === "circle") {
     return (
-      <Box
-        sx={{
-          width: "16px",
-          height: "16px",
-          backgroundColor: color,
-          borderRadius: "50%",
-        }}
+      <div
+        className={`w-4 h-4 rounded-full`}
+        style={{ backgroundColor: color }}
       />
     );
   }
   if (shape === "square") {
-    return (
-      <Box sx={{ width: "16px", height: "16px", backgroundColor: color }} />
-    );
+    return <div className={`w-4 h-4`} style={{ backgroundColor: color }} />;
   }
   console.log("Legend provided but shape not supported");
   return null;
@@ -70,10 +63,10 @@ const ToggleLabel = ({
   legend,
 }: Pick<ToggleSwitchProps, "title" | "legend">) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
+    <div className="w-full flex items-center justify-start gap-2">
       {legend && <ToggleLegend color={legend.color} shape={legend.shape} />}
-      <Typography>{title}</Typography>
-    </Box>
+      <p>{title}</p>
+    </div>
   );
 };
 
@@ -85,102 +78,60 @@ const ToggleSwitch = ({
   legend,
 }: ToggleSwitchProps) => {
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        opacity: inactive ? "0.6" : "1",
-      }}
+    <div
+      className="flex flex-1 w-[100%] items-center justify-between"
+      style={{ opacity: inactive ? 0.6 : 1 }}
     >
       <ToggleLabel title={title} legend={legend} />
       <SwitchButton checked={on} onChange={() => onToggle(on)} />
-    </Box>
+    </div>
   );
 };
 
-const TitleSwitch = ({
-  title,
-  variant,
-  on,
-  inactive,
-  onToggle,
-}: TitleSwitchProps) => {
+const TitleSwitch = ({ title, on, inactive, onToggle }: TitleSwitchProps) => {
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        borderBottom: "1px solid #e0e0e0",
+    <div
+      className="flex flex-1 w-full items-center justify-between border-b border-b-neutral-600"
+      style={{
         opacity: inactive ? "0.6" : "1",
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
-        <Typography variant={variant ?? "h6"}>{title}</Typography>
-      </Box>
+      <div className="flex items-center gap-1.5">
+        <p className="text-xl">{title}</p>
+      </div>
       <SwitchButton checked={on} onChange={() => onToggle(on)} />
-    </Box>
+    </div>
   );
 };
 
 const VisualisationSection = ({
   title,
   children,
-  variant,
   ...rest
 }: SectionSwitchProps) => {
   const isTogglable = "on" in rest;
   if (isTogglable) {
     const { on, onToggle, inactive } = rest;
     return (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          justifyContent: "flex-start",
-          borderBottom: "1px solid grey",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "6px",
+      <section className="flex flex-col w-full justify-start border-b border-b-neutral-700">
+        <div
+          className="flex items-center justify-between gap-1.5"
+          style={{
             opacity: inactive ? "0.6" : "1",
           }}
         >
-          <Typography variant={variant ?? "subtitle1"}>{title}</Typography>
+          <p className="text-xl">{title}</p>
           <SwitchButton checked={on} onChange={() => onToggle(on)} />
-        </Box>
+        </div>
         {children}
-      </Box>
+      </section>
     );
   }
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        justifyContent: "flex-start",
-        borderBottom: "1px solid grey",
-      }}
-    >
-      <Typography
-        variant={variant ?? "subtitle1"}
-        sx={{ width: "100%", textAlign: "left", padding: "8px 0 0 0" }}
-      >
-        {title}
-      </Typography>
+    <section className="flex flex-col w-full justify-start border-b border-b-neutral-700">
+      <p className="text-xl w-full text-left pt-2">{title}</p>
       {children}
-    </Box>
+    </section>
   );
 };
 
