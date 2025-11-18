@@ -1,23 +1,47 @@
-import { Box, styled, Switch, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import type {
   SectionSwitchProps,
+  SwitchProps,
   TitleSwitchProps,
   ToggleLegendProps,
   ToggleSwitchProps,
 } from "./ToggleSwitch.types";
 
-const Toggle = styled(Switch)(({ theme, checked }) => ({
-  "& .MuiSwitch-track": {
-    background: `${
-      checked ? theme.palette.secondary.dark : theme.palette.primary.dark
-    } !important`,
-  },
-  "& .MuiSwitch-thumb": {
-    backgroundColor: checked
-      ? theme.palette.secondary.light
-      : theme.palette.primary.light,
-  },
-}));
+const trackStyle = {
+  checked: "bg-emerald-700",
+  unchecked: "bg-yellow-900",
+};
+
+const thumbStyle = {
+  checked: "bg-emerald-300 translate-x-[14px]",
+  unchecked: "bg-yellow-600 translate-x-[0px]",
+};
+
+const SwitchButton = ({ checked, onChange }: SwitchProps) => {
+  const trackStyleClass = `flex w-[34px] h-[14px] rounded-full relative z-20 ${
+    checked ? trackStyle.checked : trackStyle.unchecked
+  }`;
+
+  const thumbStyleClass = `w-[20px] h-[20px] top-[-2.5px] absolute rounded-full z-30 transition-transform transition-discrete duration-150 ${
+    checked ? thumbStyle.checked : thumbStyle.unchecked
+  }`;
+
+  return (
+    <div className="flex flex-row items-center w-full">
+      <button
+        className="bg-transparent! border-0 p-0 m-0 cursor-pointer h-[40px] w-[64px] flex items-center justify-center"
+        onClick={() => onChange()}
+      >
+        <input type="checkbox" className="hidden" checked={checked} />
+        <span className="h-[36px] w-[44px] z-10 flex items-center justify-end">
+          <span className={trackStyleClass}>
+            <span className={thumbStyleClass} />
+          </span>
+        </span>
+      </button>
+    </div>
+  );
+};
 
 const ToggleLegend = ({ color, shape }: ToggleLegendProps) => {
   if (shape === "circle") {
@@ -72,7 +96,7 @@ const ToggleSwitch = ({
       }}
     >
       <ToggleLabel title={title} legend={legend} />
-      <Toggle checked={on} onChange={() => onToggle(on)} />
+      <SwitchButton checked={on} onChange={() => onToggle(on)} />
     </Box>
   );
 };
@@ -99,7 +123,7 @@ const TitleSwitch = ({
       <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
         <Typography variant={variant ?? "h6"}>{title}</Typography>
       </Box>
-      <Toggle checked={on} onChange={() => onToggle(on)} />
+      <SwitchButton checked={on} onChange={() => onToggle(on)} />
     </Box>
   );
 };
@@ -133,7 +157,7 @@ const VisualisationSection = ({
           }}
         >
           <Typography variant={variant ?? "subtitle1"}>{title}</Typography>
-          <Toggle checked={on} onChange={() => onToggle(on)} />
+          <SwitchButton checked={on} onChange={() => onToggle(on)} />
         </Box>
         {children}
       </Box>
@@ -160,4 +184,4 @@ const VisualisationSection = ({
   );
 };
 
-export { ToggleSwitch, TitleSwitch, VisualisationSection };
+export { ToggleSwitch, TitleSwitch, VisualisationSection, SwitchButton };

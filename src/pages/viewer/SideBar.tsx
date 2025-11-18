@@ -2,8 +2,12 @@ import { Box } from "@mui/material";
 import VisualizationControls from "./VisualizationControls";
 
 import type { VisualisationConfig } from "@services/types";
+import { SwitchButton } from "@ui/ToggleSwitch/ToggleSwitch";
+import { useState } from "react";
 
 const SideBar = ({ config }: { config: VisualisationConfig }) => {
+  const [checked, setChecked] = useState(false);
+
   return (
     <Box
       sx={{
@@ -13,6 +17,7 @@ const SideBar = ({ config }: { config: VisualisationConfig }) => {
       }}
     >
       <VisualizationControls config={config} />
+      <SwitchButton checked={checked} onChange={(val) => setChecked(!val)} />
     </Box>
   );
 };

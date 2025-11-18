@@ -33,4 +33,9 @@ interface TogglableSectionProps extends InertSectionProps {
   onToggle: (newValue: boolean) => void;
 }
 
+export interface SwitchProps {
+  checked: boolean;
+  onChange: (value: boolean) => void;
+}
+
 export type SectionSwitchProps = InertSectionProps | TogglableSectionProps;
