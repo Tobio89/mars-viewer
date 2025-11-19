@@ -1,4 +1,4 @@
-import DetailTooltip from "./DetailTooltip";
+import InfoTooltip from "./InfoTooltip";
 import SideBar from "./SideBar";
 import Visualiser from "./Visualiser/Visualiser";
 import useVisualisationRendering from "./useVisualisationRendering/useVisualisationRendering";
@@ -18,7 +18,7 @@ const ViewerPageInternal = ({ metadata, config }: Props) => {
     <main className="flex flex-1 h-full w-full">
       <SideBar config={config} />
       <div className="flex-1 relative">
-        <DetailTooltip />
+        <InfoTooltip />
         <Visualiser
           metadata={metadata}
           onDeckGLOverlayRedraw={onDeckGLOverlayRedraw}
