@@ -65,7 +65,7 @@ function AboutViewer() {
           64 layers of data!
         </article>
         <BitmaskInteractive />
-        <article sx={{ paddingBottom: "40px" }}>
+        <article className="pb-10">
           The workflow I created allows the user to toggle on or off any of
           these layers. If the pixel has a 1 in a given position, and its toggle
           is on, that layer's configured colour is added into the final colour
