@@ -4,7 +4,7 @@ import PageLink from "./PageLink";
 const TitleLink = () => {
   return (
     <PageLink to="/">
-      <div className="text-amber-600 text-2xl flex items-center gap-4">
+      <div className="text-amber-600 w-[230px] text-2xl flex items-center justify-start gap-4">
         <img
           src={MarsIcon}
           alt="Mars Visualiser"
@@ -18,7 +18,7 @@ const TitleLink = () => {
 
 const TitleBar = () => {
   return (
-    <nav className="bg-neutral-800 h-[50px] flex items-center pl-20 gap-8">
+    <nav className="bg-neutral-800 h-[50px] flex items-center pl-6 gap-8">
       <TitleLink />
       <PageLink to="/" title="Viewer" />
       <PageLink to="/about" title="About" />
