@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ArrowRightAlt } from "@mui/icons-material";
 import Colorful from "@uiw/react-color-colorful";
 import { hsvaToRgba, hexToRgba } from "@uiw/color-convert";
 
@@ -118,15 +117,14 @@ export function BitmaskExplanation() {
     <article className="flex flex-col w-full items-center px-[60px] py-[80px]">
       <Container>
         <ExampleTooltip color={color} updateColor={updateColor} />
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
+        <i className="fa-solid fa-arrow-right-long"></i>
         <div className="flex flex-col gap-0.5 font-mono w-[60px]">
           <p>r: {rgb.r}</p>
           <p>g: {rgb.g}</p>
           <p>b: {rgb.b}</p>
           <p>a: {alpha}</p>
         </div>
-
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
+        <i className="fa-solid fa-arrow-right-long"></i>
         <div className="flex flex-col gap-0.5 font-mono">
           <BinaryBreakdown binary={rBinary} />
           <BinaryBreakdown binary={gBinary} />
@@ -226,7 +224,7 @@ export function BitmaskInteractive() {
             );
           })}
         </div>
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
+        <i className="fa-solid fa-arrow-right-long"></i>{" "}
         <div className="flex flex-col gap-1 w-[240px] bg-neutral-800 p-4 rounded-md">
           {layerLabels.map((label, index) => {
             const legendColor = redLayers[index]
@@ -244,7 +242,7 @@ export function BitmaskInteractive() {
             );
           })}
         </div>
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
+        <i className="fa-solid fa-arrow-right-long"></i>{" "}
         <div
           className="w-24 h-24 border-2 border-white rounded-sm"
           style={{
