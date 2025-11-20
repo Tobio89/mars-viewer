@@ -1,6 +1,4 @@
-import { createTheme } from "@mui/material";
-
-const marsTheme = createTheme({
+const marsTheme = {
   palette: {
     primary: {
       main: "#E67E0F",
@@ -25,6 +23,6 @@ const marsTheme = createTheme({
       },
     },
   },
-});
+};
 
 export default marsTheme;
