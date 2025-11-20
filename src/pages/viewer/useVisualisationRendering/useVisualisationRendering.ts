@@ -1,16 +1,16 @@
 import { useCallback } from "react";
+import { Deck } from "@deck.gl/core";
+import { ViewStateProps } from "@deck.gl/core/lib/deck";
 
-import type { TooltipOverlayRedrawArgs } from "./useVisualisationRendering.types";
 import usePointRendering from "./usePointRendering";
 
+import { useMouseCoords } from "@store/store";
 import useDeckGL from "./useDeckGL";
-import { ViewStateProps } from "@deck.gl/core/lib/deck";
-import { LayerFilter } from "./useDeckGL.types";
-import { Deck } from "@deck.gl/core";
-import { useMouseCoords } from "src/store/store";
+
+import type { LayerFilter } from "./useDeckGL.types";
+import type { TooltipOverlayRedrawArgs } from "./useVisualisationRendering.types";
 
 const useVisualisationRendering = () => {
-
   const { createPointLayers } = usePointRendering();
   const { drawDeckLayer, clearLayers, constructLayers } = useDeckGL();
 
@@ -70,7 +70,7 @@ const useVisualisationRendering = () => {
     ]);
 
     drawDeckLayer(deck, layers, viewState, layerFilter);
-  }
+  };
 
   return {
     onTooltipOverlayRedraw,

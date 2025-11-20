@@ -1,19 +1,12 @@
-import { Box } from "@mui/material";
 import VisualizationControls from "./VisualizationControls";
 
-import type { VisualisationConfig } from "src/services/types";
+import type { VisualisationConfig } from "@services/types";
 
 const SideBar = ({ config }: { config: VisualisationConfig }) => {
   return (
-    <Box
-      sx={{
-        width: "280px",
-        padding: "8px",
-        // borderRight: "3px solid #32373B",
-      }}
-    >
+    <section className="w-[280px] p-2">
       <VisualizationControls config={config} />
-    </Box>
+    </section>
   );
 };
 

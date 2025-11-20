@@ -1,61 +1,104 @@
 import { useState } from "react";
-import { Box, styled, Tooltip, Typography } from "@mui/material";
-import { ArrowRightAlt } from "@mui/icons-material";
-
 import Colorful from "@uiw/react-color-colorful";
-
-import { ToggleSwitch } from "src/components/ToggleSwitch/ToggleSwitch";
 import { hsvaToRgba, hexToRgba } from "@uiw/color-convert";
-import { useAboutColorState } from "src/store/store";
+
+import { useAboutColorState } from "@store/store";
+import { ToggleSwitch } from "@ui/ToggleSwitch/ToggleSwitch";
 
 function LayerTag({ isOn, label }: { isOn: boolean; label: string }) {
   return (
-    <Typography
-      variant="caption"
-      sx={{
+    <p
+      className="rounded-xs p-1 text-sm"
+      style={{
         background: isOn ? "white" : "unset",
         color: isOn ? "black" : "white",
-        borderRadius: "2px",
-        padding: "0 4px",
       }}
     >
       {label}
-    </Typography>
+    </p>
   );
 }
 
-const Container = styled(Box)({
-  display: "flex",
-  flexDirection: "row",
-  gap: "40px",
-  alignItems: "center",
-  height: "200px",
-  width: "100%",
-  justifyContent: "space-evenly",
-  // padding: "0",
-});
+const Container = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-row gap-10 items-center h-52 w-full justify-evenly">
+    {children}
+  </div>
+);
+
+function ExampleTooltip({
+  color,
+  updateColor,
+}: {
+  color: {
+    h: number;
+    s: number;
+    v: number;
+    a: number;
+  };
+  updateColor: (color: { h: number; s: number; v: number; a: number }) => void;
+}) {
+  const rgb = hsvaToRgba(color);
+
+  const [wrapperHover, setWrapperHover] = useState(false);
+  const [contentHover, setContentHover] = useState(false);
+
+  const open = wrapperHover || contentHover; //
+
+  const tooltipContainerClass = `absolute top-[120px] z-999 w-[230px] h-[230px] flex flex-col items-center justify-center transition-opacity duration-200 ${
+    open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  }`;
+
+  const tooltipClass =
+    "w-full h-full bg-neutral-700 rounded-xl pb-[8px] pt-[16px] pr-[8px] pl-[14px]";
+
+  const triangleClass =
+    "absolute top-[-10px] left-[50%] translate-x-[-50%] w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-neutral-700";
+
+  return (
+    <div
+      className="w-[130px] h-[130px] relative flex flex-col items-center gap-4"
+      onMouseEnter={() => setWrapperHover(true)}
+      onMouseLeave={() => setWrapperHover(false)}
+    >
+      <div
+        className={tooltipContainerClass}
+        onMouseEnter={() => setContentHover(true)}
+        onMouseLeave={() => setContentHover(false)}
+      >
+        <div className={triangleClass} />
+        <div className={tooltipClass}>
+          <Colorful
+            color={color}
+            onChange={(newColor) => updateColor(newColor.hsva)}
+          />
+        </div>
+      </div>
+      <div
+        className="w-24 h-24 border-2 border-white rounded-sm cursor-pointer"
+        style={{
+          backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
+        }}
+      />
+    </div>
+  );
+}
 
 function BinaryBreakdown({ binary }: { binary: string }) {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: "1px" }}>
+    <div className="flex items-center gap-px">
       {binary.split("").map((bit, index) => (
-        <Typography
-          variant="body1"
+        <p
           key={index}
-          sx={{
-            width: "24px",
-            height: "24px",
-            textAlign: "center",
-            padding: "1px 1px",
-            borderRadius: "2px",
+          className="w-6 h-6 text-center rounded-xs p-px"
+          style={{
             background: bit === "1" ? "white" : "#252525",
             color: bit === "1" ? "#252525" : "white",
           }}
         >
           {bit}
-        </Typography>
+        </p>
       ))}
-    </Box>
+    </div>
   );
 }
 
@@ -71,70 +114,26 @@ export function BitmaskExplanation() {
   const aBinary = alpha.toString(2).padStart(8, "0");
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "60px 80px",
-        width: '100%'
-      }}
-    >
+    <article className="flex flex-col w-full items-center px-[60px] py-[80px]">
       <Container>
-        <Tooltip
-          title={
-            <Colorful
-              color={color}
-              onChange={(newColor) => updateColor(newColor.hsva)}
-            />
-          }
-        >
-          <Box
-            sx={{
-              width: "100px",
-              height: "100px",
-              border: `2px solid white`,
-              backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          />
-        </Tooltip>
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2px",
-            fontFamily: "monospace",
-            width: "60px",
-          }}
-        >
-          <Typography variant="body1">r: {rgb.r}</Typography>
-          <Typography variant="body1">g: {rgb.g}</Typography>
-          <Typography variant="body1">b: {rgb.b}</Typography>
-          <Typography variant="body1">a: {alpha}</Typography>
-        </Box>
-
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2px",
-            fontFamily: "monospace",
-          }}
-        >
+        <ExampleTooltip color={color} updateColor={updateColor} />
+        <i className="fa-solid fa-arrow-right-long"></i>
+        <div className="flex flex-col gap-0.5 font-mono w-[60px]">
+          <p>r: {rgb.r}</p>
+          <p>g: {rgb.g}</p>
+          <p>b: {rgb.b}</p>
+          <p>a: {alpha}</p>
+        </div>
+        <i className="fa-solid fa-arrow-right-long"></i>
+        <div className="flex flex-col gap-0.5 font-mono">
           <BinaryBreakdown binary={rBinary} />
           <BinaryBreakdown binary={gBinary} />
           <BinaryBreakdown binary={bBinary} />
           <BinaryBreakdown binary={aBinary} />
-        </Box>
+        </div>
       </Container>
-      <Typography variant="caption">
-        Hover over the colour box to change the colour!
-      </Typography>
-    </Box>
+      <p className="text-sm">Hover over the colour box to change the colour!</p>
+    </article>
   );
 }
 
@@ -216,38 +215,21 @@ export function BitmaskInteractive() {
   }
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "60px 80px",
-        width: '100%'
-      }}
-    >
-      <Container sx={{ height: "420px" }}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+    <article className="flex flex-col items-center w-full px-[60px] py-[80px]">
+      <div className="flex flex-row gap-10 items-center w-full h-[420px] justify-evenly">
+        <div className="flex flex-col gap-1">
           {redLayers.map((layer, index) => {
             return (
               <LayerTag key={index} isOn={layer} label={`Layer ${index + 1}`} />
             );
           })}
-        </Box>
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2px",
-            width: "240px",
-            background: "#252525",
-            padding: "6px 12px",
-            borderRadius: "4px",
-          }}
-        >
+        </div>
+        <i className="fa-solid fa-arrow-right-long"></i>{" "}
+        <div className="flex flex-col gap-1 w-[240px] bg-neutral-800 p-4 rounded-md">
           {layerLabels.map((label, index) => {
-
-            const legendColor = redLayers[index] ? layerLegends[index] : 'transparent'
+            const legendColor = redLayers[index]
+              ? layerLegends[index]
+              : "transparent";
             return (
               <ToggleSwitch
                 key={label}
@@ -259,25 +241,23 @@ export function BitmaskInteractive() {
               />
             );
           })}
-        </Box>
-        <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
-        <Box
-          sx={{
-            width: "100px",
-            height: "100px",
-            border: `2px solid white`,
-            borderRadius: "4px",
-            backgroundColor: `rgba(${getFinalColor().r}, ${getFinalColor().g
-              }, ${getFinalColor().b}, ${getFinalColor().a})`,
+        </div>
+        <i className="fa-solid fa-arrow-right-long"></i>{" "}
+        <div
+          className="w-24 h-24 border-2 border-white rounded-sm"
+          style={{
+            backgroundColor: `rgba(${getFinalColor().r}, ${
+              getFinalColor().g
+            }, ${getFinalColor().b}, ${getFinalColor().a})`,
           }}
         />
-      </Container>
-      <Typography variant="caption" sx={{ textAlign: "center" }}>
+      </div>
+      <p className="text-sm text-center">
         Use the switches to change the final colour of the pixel! <br />
         The layers are configured according to the red channel above.
         <br /> If pixel doesn't belong to the layer, it will not be included in
         the final colour!
-      </Typography>
-    </Box>
+      </p>
+    </article>
   );
 }

@@ -1,16 +1,12 @@
-import { Box } from "@mui/material";
-
-import { useVisualizationStore } from "../../store/store";
+import { useVisualizationStore } from "@store/store";
 
 import {
   ToggleSwitch,
   TitleSwitch,
   VisualisationSection,
-} from "../../components/ToggleSwitch/ToggleSwitch";
+} from "@ui/ToggleSwitch/ToggleSwitch";
 
-// import { visualizationConfig } from "../../visualizationConfig";
-
-import type { VisualisationConfig } from "src/services/types";
+import type { VisualisationConfig } from "@services/types";
 
 const VisualizationControls = ({ config }: { config: VisualisationConfig }) => {
   const {
@@ -44,16 +40,9 @@ const VisualizationControls = ({ config }: { config: VisualisationConfig }) => {
   ];
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-      }}
-    >
+    <section className="flex flex-col items-start">
       <TitleSwitch
         title="Layer Controls"
-        variant="h6"
         on={masterOn}
         inactive={!masterOn}
         onToggle={(val) => {
@@ -127,7 +116,7 @@ const VisualizationControls = ({ config }: { config: VisualisationConfig }) => {
           );
         })}
       </VisualisationSection>
-    </Box>
+    </section>
   );
 };
 

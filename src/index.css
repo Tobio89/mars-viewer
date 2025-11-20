@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
 * {
   box-sizing: border-box;
 }
@@ -17,6 +20,17 @@
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
   margin: 0;
+
+  --fade-animation {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
 }
 
 a {
@@ -72,3 +86,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
