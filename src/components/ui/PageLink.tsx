@@ -1,18 +1,13 @@
-import { Typography, TypographyProps } from "@mui/material";
 import { Link, useLocation } from "react-router";
-
-import theme from "@consts/theme";
 
 export default function PageLink({
   to,
   title,
   children,
-  variant = "body1",
 }: {
   to: string;
   title?: string;
   children?: React.ReactNode;
-  variant?: TypographyProps["variant"];
 }) {
   const isActive = useLocation().pathname === to;
 
@@ -22,17 +17,13 @@ export default function PageLink({
 
   return (
     <Link to={to}>
-      <Typography
-        variant={variant}
-        sx={{
-          textDecoration: "none",
-          color: isActive
-            ? theme.palette.primary.light
-            : theme.palette.primary.main,
-        }}
+      <p
+        className={`no-underline ${
+          isActive ? "text-amber-600" : "text-amber-700"
+        }`}
       >
         {title}
-      </Typography>
+      </p>
     </Link>
   );
 }

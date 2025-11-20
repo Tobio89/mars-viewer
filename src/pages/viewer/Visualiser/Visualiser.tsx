@@ -5,7 +5,6 @@ import OSDViewer, {
   OSDViewerRef,
   readXMLMetadata,
 } from "@lunit/osd-react-renderer";
-import { Box } from "@mui/material";
 
 import useOSDHandlers from "../useOSDHandlers";
 
@@ -51,7 +50,7 @@ const Visualiser = ({ onDeckGLOverlayRedraw, metadata }: VisualizerProps) => {
   };
 
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
+    <section className="w-full h-full">
       <OSDViewer
         options={viewerOptions}
         ref={osdViewerRef as Ref<OSDViewerRef>}
@@ -90,7 +89,7 @@ const Visualiser = ({ onDeckGLOverlayRedraw, metadata }: VisualizerProps) => {
           />
         </>
       </OSDViewer>
-    </Box>
+    </section>
   );
 };
 

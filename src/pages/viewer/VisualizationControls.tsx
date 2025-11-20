@@ -1,5 +1,3 @@
-import { Box } from "@mui/material";
-
 import { useVisualizationStore } from "@store/store";
 
 import {
@@ -42,16 +40,9 @@ const VisualizationControls = ({ config }: { config: VisualisationConfig }) => {
   ];
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-      }}
-    >
+    <section className="flex flex-col items-start">
       <TitleSwitch
         title="Layer Controls"
-        variant="h6"
         on={masterOn}
         inactive={!masterOn}
         onToggle={(val) => {
@@ -125,7 +116,7 @@ const VisualizationControls = ({ config }: { config: VisualisationConfig }) => {
           );
         })}
       </VisualisationSection>
-    </Box>
+    </section>
   );
 };
 

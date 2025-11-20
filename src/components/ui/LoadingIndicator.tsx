@@ -1,36 +1,16 @@
-import { Box, Typography } from "@mui/material"
-
-
 const Spinner = () => {
-    return <span className="loader" />
-}
+  return <span className="loader" />;
+};
 
-const LoadingIndicator = ({ title = 'Loading...' }: { title?: string }) => {
-    return (
-        <Box sx={{
-            position: "fixed", top: 0, left: 0, width: '100%', height: '100vh', zIndex: 999999,
-            display: "flex",
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'rgba(0,0,0,0.4)',
-            pointerEvents: 'none'
-        }}>
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                gap: "24px"
-            }}>
+const LoadingIndicator = ({ title = "Loading..." }: { title?: string }) => {
+  return (
+    <div className="position-fixed top-0 left-0 w-full h-screen z-9999 flex flex-col justify-center items-center bg-black/40 pointer-events-none">
+      <div className="flex flex-col justify-center items-center gap-6">
+        <Spinner />
+        <p>{title}</p>
+      </div>
+    </div>
+  );
+};
 
-                <Spinner />
-                <Typography>
-                    {title}
-                </Typography>
-            </Box>
-        </Box>
-    )
-}
-
-export default LoadingIndicator
+export default LoadingIndicator;

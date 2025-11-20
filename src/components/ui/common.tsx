@@ -1,81 +1,15 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Typography,
-} from "@mui/material";
-
 export const PageContainer = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        padding: "0 20px",
-        overflowX: "hidden",
-        overflowY: "auto",
-      }}
-    >
+    <main className="flex-1 px-5 overflow-x-hidden overflow-y-auto">
       {children}
-    </Box>
+    </main>
   );
 };
 
 export const PageSection = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Box
-      component="section"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-        padding: "20px 200px",
-        gap: "10px",
-        textAlign: "left",
-      }}
-    >
+    <section className="flex flex-col justify-start items-start px-5 xl:px-65 lg:px-40 py-5 gap-2.5 text-left">
       {children}
-    </Box>
-  );
-};
-
-export const AccordionSection = ({
-  summary,
-  children,
-}: {
-  summary: string;
-  children: React.ReactNode;
-}) => {
-  return (
-    <PageSection>
-      <Accordion sx={{ width: '100%' }}>
-        <AccordionSummary>
-          <Typography variant="h5">{summary}</Typography>
-        </AccordionSummary>
-        <AccordionDetails>{children}</AccordionDetails>
-      </Accordion>
-    </PageSection>
-  );
-};
-
-export const VisualisationTitle = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  return (
-    <Typography
-      variant="h6"
-      sx={{
-        borderBottom: "1px solid white",
-        width: "100%",
-        textAlign: "left",
-        padding: "4px",
-      }}
-    >
-      {children}
-    </Typography>
+    </section>
   );
 };

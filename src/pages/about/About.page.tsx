@@ -1,5 +1,4 @@
-import { useRoutes } from "react-router";
-import { Box, Typography } from "@mui/material";
+import { useLocation, useRoutes } from "react-router";
 
 import { PageContainer, PageSection } from "@ui/common";
 import PageLink from "@ui/PageLink";
@@ -28,27 +27,36 @@ const aboutRouter = [
   },
 ];
 
+const getTitleFromPath = (path: string) => {
+  switch (path) {
+    case "/about/viewer":
+      return ": The Viewer";
+    case "/about/mars":
+      return ": The Planet";
+    case "/about/developer":
+      return ": The Developer";
+    default:
+      return "";
+  }
+};
+
 function AboutPage() {
   const element = useRoutes(aboutRouter);
+  const { pathname } = useLocation();
+
+  const aboutTitle = getTitleFromPath(pathname);
 
   return (
     <PageContainer>
       <PageSection>
-        <Typography variant="h3">About</Typography>
+        <h3 className="text-4xl capitalize">About{aboutTitle}</h3>
       </PageSection>
       <PageSection>
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-          component="div"
-        >
-          <PageLink to="/about/viewer" title="Mars Viewer" variant="h4" />
-          <PageLink to="/about/mars" title="The Planet" variant="h4" />
-          <PageLink to="/about/developer" title="The Developer" variant="h4" />
-        </Box>
+        <div className="flex w-full justify-between">
+          <PageLink to="/about/viewer" title="Mars Viewer" />
+          <PageLink to="/about/mars" title="The Planet" />
+          <PageLink to="/about/developer" title="The Developer" />
+        </div>
       </PageSection>
       {element}
     </PageContainer>
