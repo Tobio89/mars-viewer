@@ -50,7 +50,7 @@ function ExampleTooltip({
   }`;
 
   const tooltipClass =
-    "w-full h-full bg-neutral-700 rounded-md pb-[8px] pt-[16px] pr-[8px] pl-[14px]";
+    "w-full h-full bg-neutral-700 rounded-xl pb-[8px] pt-[16px] pr-[8px] pl-[14px]";
 
   const triangleClass =
     "absolute top-[-10px] left-[50%] translate-x-[-50%] w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-neutral-700";
