@@ -8,7 +8,7 @@ import { ToggleSwitch } from "@ui/ToggleSwitch/ToggleSwitch";
 function LayerTag({ isOn, label }: { isOn: boolean; label: string }) {
   return (
     <p
-      className="rounded-xs py-1"
+      className="rounded-xs p-1 text-sm"
       style={{
         background: isOn ? "white" : "unset",
         color: isOn ? "black" : "white",
@@ -217,7 +217,7 @@ export function BitmaskInteractive() {
   return (
     <article className="flex flex-col items-center w-full px-[60px] py-[80px]">
       <div className="flex flex-row gap-10 items-center w-full h-[420px] justify-evenly">
-        <div className="flex flex-col gap-0.5">
+        <div className="flex flex-col gap-1">
           {redLayers.map((layer, index) => {
             return (
               <LayerTag key={index} isOn={layer} label={`Layer ${index + 1}`} />
