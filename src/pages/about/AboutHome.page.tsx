@@ -24,7 +24,7 @@ function AboutHome() {
         </a>
       </p>
       <br />
-      <p>
+      <p className="text-sm">
         All of the images used to create the Mars data come from here:{" "}
         <a
           href="https://commons.wikimedia.org/wiki/Category:Maps_of_Mars"
@@ -32,7 +32,8 @@ function AboutHome() {
         >
           Wikimedia Commons: Maps of Mars
         </a>
-        <br />
+      </p>
+      <p className="text-sm">
         The base tile image is from the Tianwen-1 Mars mission. The annotations
         are files I created myself, based on images from Wikimedia.
       </p>
