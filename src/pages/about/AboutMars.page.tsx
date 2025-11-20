@@ -8,7 +8,7 @@ function AboutMars() {
   return (
     <>
       <PageSection>
-        <h4 className="text-3xl">Regions of Mars</h4>
+        <h4 className="text-3xl pt-10">Regions of Mars</h4>
         <p>
           Mars' regions are broken down into a number of categories, each with
           names that may seem familiar, but we don't use for Earth.
