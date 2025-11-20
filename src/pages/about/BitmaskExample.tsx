@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Tooltip } from "@mui/material";
 import { ArrowRightAlt } from "@mui/icons-material";
 import Colorful from "@uiw/react-color-colorful";
 import { hsvaToRgba, hexToRgba } from "@uiw/color-convert";
@@ -26,6 +25,64 @@ const Container = ({ children }: { children: React.ReactNode }) => (
     {children}
   </div>
 );
+
+function ExampleTooltip({
+  color,
+  updateColor,
+}: {
+  color: {
+    h: number;
+    s: number;
+    v: number;
+    a: number;
+  };
+  updateColor: (color: { h: number; s: number; v: number; a: number }) => void;
+}) {
+  const rgb = hsvaToRgba(color);
+
+  const [wrapperHover, setWrapperHover] = useState(false);
+  const [contentHover, setContentHover] = useState(false);
+
+  const open = wrapperHover || contentHover; //
+
+  const tooltipContainerClass = `absolute top-[120px] z-999 w-[230px] h-[230px] flex flex-col items-center justify-center transition-opacity duration-200 ${
+    open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  }`;
+
+  const tooltipClass =
+    "w-full h-full bg-neutral-700 rounded-md pb-[8px] pt-[16px] pr-[8px] pl-[14px]";
+
+  const triangleClass =
+    "absolute top-[-10px] left-[50%] translate-x-[-50%] w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-neutral-700";
+
+  return (
+    <div
+      className="w-[130px] h-[130px] relative flex flex-col items-center gap-4"
+      onMouseEnter={() => setWrapperHover(true)}
+      onMouseLeave={() => setWrapperHover(false)}
+    >
+      <div
+        className={tooltipContainerClass}
+        onMouseEnter={() => setContentHover(true)}
+        onMouseLeave={() => setContentHover(false)}
+      >
+        <div className={triangleClass} />
+        <div className={tooltipClass}>
+          <Colorful
+            color={color}
+            onChange={(newColor) => updateColor(newColor.hsva)}
+          />
+        </div>
+      </div>
+      <div
+        className="w-24 h-24 border-2 border-white rounded-sm cursor-pointer"
+        style={{
+          backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
+        }}
+      />
+    </div>
+  );
+}
 
 function BinaryBreakdown({ binary }: { binary: string }) {
   return (
@@ -60,21 +117,7 @@ export function BitmaskExplanation() {
   return (
     <article className="flex flex-col w-full items-center px-[60px] py-[80px]">
       <Container>
-        <Tooltip
-          title={
-            <Colorful
-              color={color}
-              onChange={(newColor) => updateColor(newColor.hsva)}
-            />
-          }
-        >
-          <div
-            className="w-24 h-24 border-2 border-white rounded-sm cursor-pointer"
-            style={{
-              backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
-            }}
-          />
-        </Tooltip>
+        <ExampleTooltip color={color} updateColor={updateColor} />
         <ArrowRightAlt sx={{ fontSize: 40, color: "white" }} />
         <div className="flex flex-col gap-0.5 font-mono w-[60px]">
           <p>r: {rgb.r}</p>
